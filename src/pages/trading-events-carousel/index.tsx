@@ -41,7 +41,7 @@ export default function Calendar() {
                 <div style={{ fontFamily: 'DarkForest', fontWeight: 400}} className={'text-white text-[15px]'}><span className={'text-[#FF9900]'}>3</span> EVENTS THIS DAY</div>
             </div>
             <Divider className={'my-3 dark'}/>
-            <div className={'w-full max-w-full flex flex-row justify-start h-auto gap-10 mt-0 overflow-y-scroll scrollbar-hide px-[40px]'}>
+            <div className={'w-full max-w-full flex flex-row justify-start h-auto gap-6 mt-4 overflow-y-scroll scrollbar-hide px-[40px]'}>
                 {[1, 2, 3, 4,5,6,7,8,9,1,2,3,4].map((_, index) => (
                     <div className={'min-w-[280px] max-w-[280px]  h-full bg-[#282828] flex flex-col items-start justify-start px-[5px] pt-[5px] pb-[20px]'}>
                         <div className={'w-full bg-[#FF9900] py-[9px] flex flex-row justify-start items-center px-[20px]'}>
