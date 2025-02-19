@@ -90,12 +90,6 @@ export default function AdminCalendar() {
     return (
         <>
             <div className="p-4 bg-black h-screen overflow-y-scroll flex flex-col justify-between">
-                <div className={'w-full flex flex-row justify-end items-center pb-4'}>
-                    <Button radius={'none'} color="warning"
-                            endContent={<CameraIcon size={undefined} height={undefined} width={undefined}/>}>
-                        Create New Event
-                    </Button>
-                </div>
                 <div
                     className={'w-full bg-[#FF9900] py-[8px] flex flex-row justify-between items-center px-[20px] flex-grow-0'}>
                     <div onClick={() => changeMonth('prev')} className={'w-[20px] h-[30px] bg-black'}></div>
