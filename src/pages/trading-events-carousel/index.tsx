@@ -20,7 +20,7 @@ export default function Calendar() {
 
     return (
         <div
-            className={"relative bg-[#0F0F0F] w-screen h-screen flex flex-col items-center justify-center px-[0px]"}>
+            className={"relative bg-black w-screen h-screen flex flex-col items-center justify-center px-[0px]"}>
             <div className={'w-full max-w-full flex flex-row gap-8 items-center justify-start px-[40px] overflow-y-scroll'}>
                 {DOW.map((day, index) => (
                     <div>
@@ -44,13 +44,13 @@ export default function Calendar() {
             <div className={'w-full max-w-full flex flex-row justify-start h-auto gap-10 mt-0 overflow-y-scroll scrollbar-hide px-[40px]'}>
                 {[1, 2, 3, 4,5,6,7,8,9,1,2,3,4].map((_, index) => (
                     <div className={'min-w-[280px] max-w-[280px]  h-full bg-[#282828] flex flex-col items-start justify-start px-[5px] pt-[5px] pb-[20px]'}>
-                        <div className={'w-full bg-[#FF9900] py-[10px] flex flex-row justify-start items-center px-[20px]'}>
+                        <div className={'w-full bg-[#FF9900] py-[9px] flex flex-row justify-start items-center px-[20px]'}>
                             <div style={{ fontFamily: 'Pixidot', fontWeight: 400}} className={'text-black text-[16px]'}>Tuesday @ 14:00 PM</div>
                         </div>
                         <Image removeWrapper={true} radius={'none'} src="https://heroui.com/images/card-example-4.jpeg"
                                className={'w-full h-[150px] bg-black mt-[5px] object-cover'}/>
-                        <div className={'w-full flex flex-col items-start justify-start px-[20px] py-3 gap-2 mt-2'}>
-                            <div style={{ fontFamily: 'DarkForest', fontWeight: 400}} className={'text-white text-[20px] leading-[28px]'}>Live Market Updates</div>
+                        <div className={'w-full flex flex-col items-start justify-start px-[20px] py-3 gap-2 mt-2 mb-4'}>
+                            <div style={{ fontFamily: 'DarkForest', fontWeight: 400}} className={'text-white text-[21px] leading-[30px]'}>Live Market Updates</div>
                             <div className={'text-[#D1D1D1] text-[15px] leading-[18px]'}>Get more than just spectactular games and innovative
                                 hardware. Get the magic experience.
                             </div>
@@ -61,8 +61,8 @@ export default function Calendar() {
                                    src="https://heroui.com/images/card-example-4.jpeg"
                                    className={'w-[30px] h-[30px] border-white border-[2px]'}/>
                             <div className={'flex flex-col items-start justify-start gap-0'}>
-                                <div style={{ fontWeight: 800 }} className={'text-white text-[14px]'}>Dahmeyon McDonald</div>
-                                <div className={'text-[#FF9900] text-[13px]'}><strong>Market Indicator Specialist</strong></div>
+                                <div style={{ fontWeight: 800 }} className={'text-white text-[13px]'}>Dahmeyon McDonald</div>
+                                <div className={'text-[#FF9900] text-[12px]'}>Market Indicator Specialist</div>
                             </div>
                         </div>
                     </div>
