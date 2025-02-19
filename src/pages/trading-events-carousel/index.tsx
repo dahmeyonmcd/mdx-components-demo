@@ -21,17 +21,17 @@ export default function Calendar() {
     return (
         <div
             className={"relative bg-black w-screen h-screen flex flex-col items-center justify-center px-[0px]"}>
-            <div className={'w-full max-w-full flex flex-row gap-8 items-center justify-start px-[40px] overflow-y-scroll'}>
+            <div className={'w-full max-w-full flex flex-row gap-8 items-center justify-start px-[0px] overflow-y-scroll'}>
                 {DOW.map((day, index) => (
                     <div>
                         <div style={{fontWeight: 900}} onClick={() => handleIndexSelection(index)}
-                             className={`${selectedIndex === index ? 'text-white' : 'text-[#878787]'} text-[25px] cursor-pointer ${selectedIndex === index ? '' : ''}`}>{day.toUpperCase()}</div>
+                             className={`${selectedIndex === index ? 'text-white' : 'text-[#878787]'} text-[22px] cursor-pointer ${selectedIndex === index ? '' : ''}`}>{day.toUpperCase()}</div>
                     </div>
                 ))}
             </div>
 
             <Divider className={'my-2 dark'}/>
-            <div className={'w-full flex flex-row gap-3 items-center justify-start mt-3 px-[40px]'}>
+            <div className={'w-full flex flex-row gap-3 items-center justify-start mt-3 px-[0px]'}>
                 {/*<div className={'text-white'}>Filter by:</div>*/}
                 {/*<Tabs key={'light'} aria-label="Tabs variants" variant={'light'}>*/}
                 {/*    <Tab key="photos" title="Photos"/>*/}
@@ -41,7 +41,7 @@ export default function Calendar() {
                 <div style={{ fontFamily: 'DarkForest', fontWeight: 400}} className={'text-white text-[15px]'}><span className={'text-[#FF9900]'}>3</span> EVENTS THIS DAY</div>
             </div>
             <Divider className={'my-3 dark'}/>
-            <div className={'w-full max-w-full flex flex-row justify-start h-auto gap-6 mt-4 overflow-y-scroll scrollbar-hide px-[40px]'}>
+            <div className={'w-full max-w-full flex flex-row justify-start h-auto gap-3 mt-1 overflow-y-scroll scrollbar-hide px-[0px]'}>
                 {[1, 2, 3, 4,5,6,7,8,9,1,2,3,4].map((_, index) => (
                     <div className={'min-w-[280px] max-w-[280px]  h-full bg-[#282828] flex flex-col items-start justify-start px-[5px] pt-[5px] pb-[20px]'}>
                         <div className={'w-full bg-[#FF9900] py-[9px] flex flex-row justify-start items-center px-[20px]'}>
