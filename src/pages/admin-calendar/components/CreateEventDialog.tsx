@@ -36,7 +36,7 @@ export default function CreateEventDialog({ open, onClose, handleCancel, date, e
 
     return(
         <div>
-            <div
+            <div style={{ zIndex: 1000 }}
                 className="absolute top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex justify-center items-center"
                 onClick={() => handleCancel()}
             >
