@@ -1,0 +1,7 @@
+/* styles/globals.css */
+@font-face {
+    font-family: 'MyFont';
+    src: url('/assets/my-font.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
