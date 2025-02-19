@@ -48,7 +48,7 @@ export default function Calendar() {
                             <div style={{ fontFamily: 'Pixidot', fontWeight: 400}} className={'text-black text-[16px]'}>Tuesday @ 14:00 PM</div>
                         </div>
                         <Image removeWrapper={true} radius={'none'} src="https://heroui.com/images/card-example-4.jpeg"
-                               className={'w-full h-[150px] bg-black mt-[5px] object-cover'}/>
+                               className={'w-full h-[220px] bg-black mt-[5px] object-cover'}/>
                         <div className={'w-full flex flex-col items-start justify-start px-[20px] py-3 gap-2 mt-2 mb-4'}>
                             <div style={{ fontFamily: 'DarkForest', fontWeight: 400}} className={'text-white text-[21px] leading-[30px]'}>Live Market Updates</div>
                             <div className={'text-[#D1D1D1] text-[15px] leading-[18px]'}>Get more than just spectactular games and innovative
