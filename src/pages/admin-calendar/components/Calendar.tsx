@@ -140,9 +140,9 @@ export default function Calendar({ events, triggerModal, modalOpen, triggeredDat
             <div className="w-[60%] h-screen">
                 <div className="bg-[#0F0F0F] shadow-lg overflow-hidden max-h-screen">
                     <div
-                        className={'w-full bg-[#FF9900] py-[8px] flex flex-row justify-between items-center px-[20px] flex-grow-0'}>
+                        className={'w-full bg-[#FF9900] py-[6px] flex flex-row justify-between items-center px-[20px] flex-grow-0'}>
                         <div onClick={handlePrevMonth} className={'w-[20px] h-[30px] bg-black'}></div>
-                        <div style={{fontFamily: 'Pixidot', fontWeight: 400}} className={'text-black text-[20px]'}>
+                        <div style={{fontFamily: 'Pixidot', fontWeight: 400}} className={'text-black text-[18px]'}>
                             {`${monthNames[currentMonth]} ${currentYear}`}
                         </div>
                         <div onClick={handleNextMonth} className={'w-[20px] h-[30px] bg-black'}></div>
@@ -150,7 +150,7 @@ export default function Calendar({ events, triggerModal, modalOpen, triggeredDat
                     <div className="grid grid-cols-7 gap-2 p-4">
                         {daysOfWeek.map((day) => (
                             <div style={{fontFamily: 'DarkForest', fontWeight: 400}} key={day}
-                                 className="text-center font-semibold text-white">{day}</div>
+                                 className="text-center font-semibold text-white text-[15px]">{day}</div>
                         ))}
                         {generateCalendar(currentYear, currentMonth).map((day, index) => (
                             day ? (
@@ -164,7 +164,7 @@ export default function Calendar({ events, triggerModal, modalOpen, triggeredDat
                                 <div onClick={() => handleDayClick(day)} key={day}
                                      className="p-2 min-h-[60px] bg-[#282828]">
                                     <div style={{fontFamily: 'DarkForest', fontWeight: 400}}
-                                         className="text-[22px] font-bold text-white mb-0">{day}
+                                         className="text-[18px] font-bold text-white mb-0">{day}
                                     </div>
                                     {renderEventsForDay(day)}
                                 </div>

@@ -43,7 +43,7 @@ export default function Page() {
                 <Calendar events={events} modalOpen={showModal} triggerModal={() => {}} triggeredDate={(date) => handleDateSelection(date)}/>
                 <div
                     className={'w-[40%] h-screen max-h-screen overflow-y-scroll scrollbar-hide flex flex-col justify-start items-start px-2'}>
-                    <div className={'w-full flex flex-row gap-3 items-center justify-start mt-3 px-[0px] pt-[30px]'}>
+                    <div className={'w-full flex flex-row gap-3 items-center justify-start mt-3 px-[0px] pt-[0px]'}>
                         <div style={{fontFamily: 'DarkForest', fontWeight: 400}}
                              className={'text-white text-[15px]'}><span
                             className={'text-[#FF9900]'}>{filteredEvents?.length}</span> EVENTS THIS DAY
