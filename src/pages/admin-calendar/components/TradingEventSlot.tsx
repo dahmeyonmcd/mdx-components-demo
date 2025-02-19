@@ -18,18 +18,18 @@ export default function TradingEventSlot({ index, handleSelection, event }: Prop
             </div>
             <div className={'flex flex-row w-full flex-shrink-0 gap-2'}>
                 <Image removeWrapper={true} radius={'none'} src="https://heroui.com/images/card-example-4.jpeg"
-                       className={'w-[190px] h-[150px] bg-black mt-[5px] object-cover'}/>
-                <div className={'w-full flex flex-col items-start justify-start px-2 py-3 gap-1 mt-0 mb-0'}>
+                       className={'w-[190px] h-[130px] bg-black mt-[5px] object-cover'}/>
+                <div className={'w-full flex flex-col items-start justify-start px-2 py-3 gap-2 mt-0 mb-0'}>
                     <div style={{fontFamily: 'DarkForest', fontWeight: 400}}
-                         className={'text-white text-[18px] leading-[30px]'}>Live Market Updates
+                         className={'text-white text-[15px] leading-[15px]'}>Live Market Updates
                     </div>
                     <div className={'text-[#D1D1D1] text-[13px] leading-[18px]'}>Get more than just spectactular games
                         and
                         innovative
                         hardware. Get the magic experience.
                     </div>
-                    <Divider className={'dark mt-2'}/>
-                    <div className={'flex flex-row justify-start items-center px-0 py-3 gap-0 mt-0'}>
+                    <Divider className={'dark mt-0'}/>
+                    <div className={'flex flex-row justify-start items-center px-0 py-0 gap-0 mt-0'}>
                         {/*<Image removeWrapper={true} radius={'full'}*/}
                         {/*       src="https://heroui.com/images/card-example-4.jpeg"*/}
                         {/*       className={'w-[30px] h-[30px] border-white border-[2px]'}/>*/}

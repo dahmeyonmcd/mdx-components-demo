@@ -36,7 +36,7 @@ export default function Calendar({ events, triggerModal, modalOpen, triggeredDat
         if (filteredEvents.length === 0) {
             return (
                 <div onClick={() => triggeredDate(selectedDate)} className={'w-full h-[90%] flex-col flex-shrink flex items-start justify-start'}>
-                    <p className={'text-[#B5B5B5] text-[14px]'}><strong>No Events Scheduled</strong></p>
+                    <p className={'text-[#B5B5B5] text-[14px]'}><strong>No Events</strong></p>
                     <p style={{fontFamily: 'Pixidot', fontWeight: 400}} className={'text-[#878787] text-[13px]'}>Tap to add new</p>
                 </div>
             )
@@ -50,11 +50,11 @@ export default function Calendar({ events, triggerModal, modalOpen, triggeredDat
                              triggeredDate(selectedDate)
                          }}
                     >
-                        <strong>{filteredEvents.length}</strong> Live Events Scheduled
+                        <strong>{filteredEvents.length}</strong> Live Events
                     </div>
                     <div className={'flex flex-row justify-start items-center pt-1 gap-3 mt-0 px-3 pb-2'}>
                         <div className={'flex flex-col items-start justify-start gap-1'}>
-                            <div style={{fontWeight: 800}} className={'text-[#FF9900] text-[11px]'}>Tap to expand</div>
+                            <div style={{fontWeight: 800}} className={'text-[#FF9900] text-[11px]'}>See more</div>
                         </div>
                     </div>
                 </div>
