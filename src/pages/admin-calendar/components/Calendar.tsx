@@ -23,7 +23,7 @@ export default function Calendar({ events, triggerModal, modalOpen, triggeredDat
         'August', 'September', 'October', 'November', 'December'
     ];
 
-    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const daysOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
 
     useEffect(() => {
         generateCalendar(currentYear, currentMonth);
@@ -50,7 +50,7 @@ export default function Calendar({ events, triggerModal, modalOpen, triggeredDat
                              triggeredDate(selectedDate)
                          }}
                     >
-                        <strong>{filteredEvents.length}</strong> Live Events
+                        <strong>{filteredEvents.length}</strong> Events
                     </div>
                     <div className={'flex flex-row justify-start items-center pt-1 gap-3 mt-0 px-3 pb-2'}>
                         <div className={'flex flex-col items-start justify-start gap-1'}>
@@ -162,7 +162,7 @@ export default function Calendar({ events, triggerModal, modalOpen, triggeredDat
                                 //     {day}
                                 // </div>
                                 <div onClick={() => handleDayClick(day)} key={day}
-                                     className="p-2 min-h-[60px] bg-[#282828]">
+                                     className="p-2 min-h-[100px] bg-[#282828]">
                                     <div style={{fontFamily: 'DarkForest', fontWeight: 400}}
                                          className="text-[18px] font-bold text-white mb-0">{day}
                                     </div>
