@@ -25,7 +25,7 @@ export default function Calendar() {
                 {DOW.map((day, index) => (
                     <div>
                         <div style={{fontWeight: 900}} onClick={() => handleIndexSelection(index)}
-                             className={`${selectedIndex === index ? 'text-white' : 'text-[#878787]'} text-[30px] cursor-pointer ${selectedIndex === index ? '' : ''}`}>{day.toUpperCase()}</div>
+                             className={`${selectedIndex === index ? 'text-white' : 'text-[#878787]'} text-[25px] cursor-pointer ${selectedIndex === index ? '' : ''}`}>{day.toUpperCase()}</div>
                     </div>
                 ))}
             </div>
@@ -38,7 +38,7 @@ export default function Calendar() {
                 {/*    <Tab key="music" title="Music"/>*/}
                 {/*    <Tab key="videos" title="Videos"/>*/}
                 {/*</Tabs>*/}
-                <div style={{ fontFamily: 'DarkForest', fontWeight: 400}} className={'text-white text-[18px]'}><span className={'text-[#FF9900]'}>3</span> EVENTS THIS DAY</div>
+                <div style={{ fontFamily: 'DarkForest', fontWeight: 400}} className={'text-white text-[15px]'}><span className={'text-[#FF9900]'}>3</span> EVENTS THIS DAY</div>
             </div>
             <Divider className={'my-3 dark'}/>
             <div className={'w-full max-w-full flex flex-row justify-start h-auto gap-10 mt-0 overflow-y-scroll scrollbar-hide px-[40px]'}>
@@ -48,9 +48,9 @@ export default function Calendar() {
                             <div style={{ fontFamily: 'Pixidot', fontWeight: 400}} className={'text-black text-[16px]'}>Tuesday @ 14:00 PM</div>
                         </div>
                         <Image removeWrapper={true} radius={'none'} src="https://heroui.com/images/card-example-4.jpeg"
-                               className={'w-full h-[180px] bg-black mt-[5px] object-cover'}/>
+                               className={'w-full h-[150px] bg-black mt-[5px] object-cover'}/>
                         <div className={'w-full flex flex-col items-start justify-start px-[20px] py-3 gap-2 mt-2'}>
-                            <div style={{ fontFamily: 'DarkForest', fontWeight: 400}} className={'text-white text-[25px] leading-[35px]'}>Live Market Updates</div>
+                            <div style={{ fontFamily: 'DarkForest', fontWeight: 400}} className={'text-white text-[20px] leading-[28px]'}>Live Market Updates</div>
                             <div className={'text-[#D1D1D1] text-[15px] leading-[18px]'}>Get more than just spectactular games and innovative
                                 hardware. Get the magic experience.
                             </div>
