@@ -45,7 +45,6 @@ export default function CreateTimesheetDialog({ open, onSuccess, handleCancel, d
                 session_id: parseInt(selectedStream),
                 start_timestamp: startTimestamp?.split('.')[0] + "Z"
             }
-            console.log(payload);
             const dataResponse = await NetworkingAPI.fetchDataFullResponse('timesheet/instructor/report/create', 'POST', payload);
             if (dataResponse?.status === 201) {
                 setIsLoading(false)

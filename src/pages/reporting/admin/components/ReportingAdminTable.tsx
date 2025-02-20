@@ -35,9 +35,10 @@ export const columns = [
 ];
 
 export const statusOptions = [
-    {name: "Active", uid: "active"},
-    {name: "Paused", uid: "paused"},
-    {name: "Vacation", uid: "vacation"},
+    {name: "Not Started", uid: ""},
+    {name: "Needs Attention", uid: "needs_attention"},
+    {name: "Approved", uid: "approved"},
+    {name: "Denied", uid: "denied"},
 ];
 
 export function capitalize(s: any) {
@@ -65,11 +66,15 @@ const statusTextMap = {
 const INITIAL_VISIBLE_COLUMNS = ["name", "role", "status", "actions"];
 
 interface Props {
-    data: any[];
-    isLoading: boolean;
+    data: any[],
+    isLoading: boolean,
+    onError: (err: any) => void,
+    onSuccess: () => void,
+    handleApprove: (item: any) => void,
+    handleDeny: (item: any) => void,
 }
 
-export default function ReportingAdminTable({ isLoading, data }: Props) {
+export default function ReportingAdminTable({ isLoading, data, handleApprove, handleDeny }: Props) {
 
     const [expandedRows, setExpandedRows] = useState<number[]>([]);
     const [filterValue, setFilterValue] = useState<string>("");
@@ -227,27 +232,6 @@ export default function ReportingAdminTable({ isLoading, data }: Props) {
                                 {statusOptions.map((status) => (
                                     <DropdownItem key={status.uid} className="capitalize">
                                         {capitalize(status.name)}
-                                    </DropdownItem>
-                                ))}
-                            </DropdownMenu>
-                        </Dropdown>
-                        <Dropdown size={'md'}>
-                            <DropdownTrigger className="hidden sm:flex">
-                                <Button size={'md'} endContent={<ChevronDownIcon className="text-small"/>} variant="flat">
-                                    Columns
-                                </Button>
-                            </DropdownTrigger>
-                            <DropdownMenu
-                                disallowEmptySelection
-                                aria-label="Table Columns"
-                                closeOnSelect={false}
-                                selectedKeys={visibleColumns}
-                                selectionMode="multiple"
-                                onSelectionChange={setVisibleColumns}
-                            >
-                                {columns.map((column) => (
-                                    <DropdownItem key={column.uid} className="capitalize">
-                                        {capitalize(column.name)}
                                     </DropdownItem>
                                 ))}
                             </DropdownMenu>
@@ -434,11 +418,11 @@ export default function ReportingAdminTable({ isLoading, data }: Props) {
                                                 <p className={'text-[13px] text-white w-full flex-shrink'}>Clock Out
                                                     Time</p>
                                                 <p className={'text-[13px] text-white w-full flex-shrink'}>Duration</p>
-                                                <p className={'text-[13px] text-white min-w-[100px] w-[100px]'}>Status</p>
+                                                <p className={'text-[13px] text-white min-w-[150px] w-[150px]'}>Status</p>
                                                 <p className={'text-[13px] text-white min-w-[150px] w-[150px]'}></p>
                                                 <div className={'min-w-[80px] w-[80px]'}/>
                                             </div>
-                                            <AdminReportingStreamsBox sessions={item?.live_sessions}/>
+                                            <AdminReportingStreamsBox handleApprove={handleApprove} handleDeny={handleDeny} sessions={item?.live_sessions}/>
                                         </div>
                                         {item?.messages?.length > 0 && (
                                             <div className={'w-full flex flex-row justify-end mt-3'}>

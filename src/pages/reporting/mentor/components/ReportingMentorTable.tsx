@@ -161,41 +161,27 @@ export default function ReportingMentorTable({ isLoading, data, handleSelection,
     async function handleButtonAction(item: any) {
         const text_status = item?.timesheet?.status;
 
-        let payload = { instructor_id: "", timesheet_id: item?.timesheet?.id, action: "" };
-
         if (text_status === "approved") {
             // TODO: ADD VIEW MODAL
-            handleSelection(item, 'view')
+            return handleSelection(item, 'view')
         } else if (text_status === "denied") {
             // TODO: ADD VIEW MODAL
-            handleSelection(item, 'view')
+            return handleSelection(item, 'view')
         } else if (text_status === "needs_attention") {
             // TODO: ADD EDIT MODAL
-            handleSelection(item, 'edit')
+            return handleSelection(item, 'edit')
         } else if (text_status === "submitted") {
             // TODO: ADD ARE YOU SURE MODAL
-            handleSelection(item, 'cancel')
+            return handleSelection(item, 'cancel')
         } else if (text_status === "started") {
             // TODO: ADD EDIT MODAL
-            handleSelection(item, 'edit')
-        } else if (text_status === "") {
+            return handleSelection(item, 'edit')
+        } else if (text_status === "" || text_status === null) {
             // TODO: ADD EDIT MODAL
-            handleSelection(item, 'edit')
+            return handleSelection(item, 'edit')
+        } else {
+            console.log('SDSS')
         }
-
-        // try {
-        //     const tokenDataResponse = await NetworkingAPI.fetchDataFullResponse('', 'GET', { client_id: 'mdx-web-components'})
-        //     console.log("TOKEN_DATA_RESPONSE: ", tokenDataResponse)
-        //     const tokenResponseResult = tokenDataResponse?.response?.token;
-        //     if (tokenResponseResult) {
-        //         const dataResponse = await NetworkingAPI.fetchDataFullResponse('', 'POST', payload, tokenResponseResult)
-        //         console.log("DATA_RESPONSE: ", dataResponse)
-        //     }
-        //     return console.log('ERROR_NONE_HIT')
-        // } catch (error) {
-        //     console.log(error);
-        //     return
-        // }
     }
 
     const onNextPage = useCallback(() => {
