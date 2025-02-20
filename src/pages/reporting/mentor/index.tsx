@@ -1,14 +1,12 @@
 "use client"
 
-import ReportingAdminTable from "@/pages/reporting/admin/components/ReportingAdminTable";
 import {useEffect, useState} from "react";
 import NetworkingAPI from "@/helpers/NetworkingAPI";
 import MentorAnalyticsView from "@/pages/reporting/mentor/components/MentorAnalyticsView";
 import ReportingMentorTable from "@/pages/reporting/mentor/components/ReportingMentorTable";
-import CreateEventDialog from "@/pages/admin-calendar/components/CreateEventDialog";
 import CreateTimesheetDialog from "@/pages/reporting/mentor/components/CreateTimesheetDialog";
 import UpdateTimesheetDialog from "@/pages/reporting/mentor/components/UpdateTimesheetDialog";
-import {CancellationPromptDialog} from "@/pages/reporting/mentor/components/CancellationPromptDIalog";
+import CancellationPromptDialog from "@/pages/reporting/mentor/components/CancellationPromptDIalog";
 
 export default function Page() {
 
@@ -19,22 +17,26 @@ export default function Page() {
     const [selectedTimesheet, setSelectedTimesheet] = useState<any | null>(null);
 
     const [mentorData, setMentorData] = useState<any | undefined>(undefined);
-    const [data, setData] = useState<any[] | undefined>(undefined);
+    const [data, setData] = useState<any[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     async function initializePage() {
-        setData(undefined);
+        setData([]);
+        setIsLoading(true)
         setMentorData(undefined);
         try {
             const dataResponse = await NetworkingAPI.fetchDataFullResponse('timesheet/instructor/overview/retrieve', 'POST', { instructor_id: 8 }, undefined);
-            console.log(dataResponse)
             const result = dataResponse?.response?.live_sessions
             if (result) {
                 setData(result)
             } else {
                 setData([])
             }
+            setIsLoading(false)
         } catch (error) {
             console.error(error)
+            setData([])
+            setIsLoading(false)
         }
     }
 
@@ -62,7 +64,7 @@ export default function Page() {
         <>
             <div className={'relative bg-black w-screen h-screen flex flex-col items-start justify-start px-[0px]'}>
                 <MentorAnalyticsView/>
-                <ReportingMentorTable handleCreateNew={() => setTimesheetShowModal(true)} data={data ?? []} isLoading={data === undefined} handleSelection={handleTimesheetSelection}/>
+                <ReportingMentorTable handleCreateNew={() => setTimesheetShowModal(true)} data={data} isLoading={isLoading} handleSelection={handleTimesheetSelection}/>
             </div>
 
             {showTimesheetModal && (

@@ -1,3 +1,5 @@
+"use client"
+
 import {JSX, SVGProps, useCallback, useEffect, useMemo, useState} from "react";
 import {Chip} from "@heroui/chip";
 import {
@@ -19,33 +21,24 @@ import {
     TableRow
 } from "@heroui/react";
 import {User} from "@heroui/user";
-import AdminReportingUserCell from "@/pages/reporting/admin/components/components/AdminReportingUserCell";
 import {Alert} from "@heroui/alert";
-import AdminReportingStreamsBox from "@/pages/reporting/admin/components/components/AdminReportingStreamsBox";
-import NetworkingAPI from "@/helpers/NetworkingAPI";
 
 export const columns = [
-    {name: "ID", uid: "id", sortable: true},
-    {name: "NAME", uid: "name", sortable: false},
-    // {name: "AGE", uid: "age", sortable: true},
-    // {name: "ROLE", uid: "role", sortable: true},
-    // {name: "TEAM", uid: "team"},
-    // {name: "EMAIL", uid: "email"},
-    // {name: "STATUS", uid: "status", sortable: true},
-    // {name: "ACTIONS", uid: "actions"},
+    {name: "ID", uid: "id", sortable: false},
+    {name: "NAME", uid: "name", sortable: true},
 ];
 
 export const statusOptions = [
-    {name: "Active", uid: "active"},
-    {name: "Paused", uid: "paused"},
-    {name: "Vacation", uid: "vacation"},
+    {name: "Approved", uid: "approved"},
+    {name: "Denied", uid: "denied"},
+    {name: "Needs Attention", uid: "need_attention"},
 ];
 
 export function capitalize(s: any) {
     return s ? s.charAt(0).toUpperCase() + s.slice(1).toLowerCase() : "";
 }
 
-const INITIAL_VISIBLE_COLUMNS = ["name", "role", "status", "actions"];
+const INITIAL_VISIBLE_COLUMNS = ["name"];
 
 interface Props {
     data: any[],
@@ -82,7 +75,7 @@ export default function ReportingMentorTable({ isLoading, data, handleSelection,
 
         if (hasSearchFilter) {
             filteredTimesheets = filteredTimesheets.filter((timesheet) =>
-                timesheet?.session?.title.toLowerCase().includes(filterValue.toLowerCase()),
+                timesheet?.session?.title?.toLowerCase().includes(filterValue.toLowerCase()),
             );
         }
         if (statusFilter !== "all" && Array.from(statusFilter).length !== statusOptions.length) {
@@ -94,7 +87,7 @@ export default function ReportingMentorTable({ isLoading, data, handleSelection,
         return filteredTimesheets;
     }, [data, filterValue, statusFilter]);
 
-    const pages = Math.ceil(filteredItems.length / rowsPerPage);
+    const pages = Math.ceil(filteredItems?.length / rowsPerPage);
 
     const items = useMemo(() => {
         const start = (page - 1) * rowsPerPage;
@@ -169,7 +162,7 @@ export default function ReportingMentorTable({ isLoading, data, handleSelection,
         const text_status = item?.timesheet?.status;
 
         let payload = { instructor_id: "", timesheet_id: item?.timesheet?.id, action: "" };
-        console.log(item)
+
         if (text_status === "approved") {
             // TODO: ADD VIEW MODAL
             handleSelection(item, 'view')
@@ -236,10 +229,6 @@ export default function ReportingMentorTable({ isLoading, data, handleSelection,
         setPage(1);
     }, []);
 
-    useEffect(() => {
-
-    }, [count]);
-
     const topContent = useMemo(() => {
         return (
             <div className="flex flex-col gap-4">
@@ -276,27 +265,7 @@ export default function ReportingMentorTable({ isLoading, data, handleSelection,
                                 ))}
                             </DropdownMenu>
                         </Dropdown>
-                        <Dropdown size={'md'}>
-                            <DropdownTrigger className="hidden sm:flex">
-                                <Button size={'md'} endContent={<ChevronDownIcon className="text-small"/>} variant="flat">
-                                    Columns
-                                </Button>
-                            </DropdownTrigger>
-                            <DropdownMenu
-                                disallowEmptySelection
-                                aria-label="Table Columns"
-                                closeOnSelect={false}
-                                selectedKeys={visibleColumns}
-                                selectionMode="multiple"
-                                onSelectionChange={setVisibleColumns}
-                            >
-                                {columns.map((column) => (
-                                    <DropdownItem key={column.uid} className="capitalize">
-                                        {capitalize(column.name)}
-                                    </DropdownItem>
-                                ))}
-                            </DropdownMenu>
-                        </Dropdown>
+
                         <Button onPress={() => handleCreateNew()} size={'md'} color="warning" endContent={<PlusIcon width={undefined} height={undefined}/>}>
                             New Entry
                         </Button>
@@ -309,7 +278,7 @@ export default function ReportingMentorTable({ isLoading, data, handleSelection,
         statusFilter,
         visibleColumns,
         onRowsPerPageChange,
-        data.length,
+        data?.length,
         onSearchChange,
         hasSearchFilter,
     ]);
@@ -345,7 +314,7 @@ export default function ReportingMentorTable({ isLoading, data, handleSelection,
                 </div>
             </div>
         );
-    }, [selectedKeys, items.length, page, pages, hasSearchFilter]);
+    }, [selectedKeys, items?.length, page, pages, hasSearchFilter]);
 
 
     return (

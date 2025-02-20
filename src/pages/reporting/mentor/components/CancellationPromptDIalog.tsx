@@ -6,7 +6,7 @@ interface Props {
     onSuccess: () => void;
     timesheet?: any
 }
-export function CancellationPromptDialog ({ open, onCancel, onSuccess, timesheet}: Props) {
+export default function CancellationPromptDialog ({ open, onCancel, onSuccess, timesheet}: Props) {
 
     return(
         <Modal isOpen={open} onOpenChange={(isOpen: boolean) => isOpen ? onCancel() : {}} onClose={() => onCancel()}>
