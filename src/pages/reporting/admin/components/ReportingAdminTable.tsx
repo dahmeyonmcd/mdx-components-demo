@@ -566,25 +566,31 @@ export default function ReportingAdminTable({ isLoading }: Props) {
                                                 </div>
                                                 <div className={'w-full flex flex-shrink-1'}>
                                                     <div className="flex flex-col">
-                                                        <p className="text-bold text-small capitalize text-white">{item?.id}</p>
-                                                        <p className="text-bold text-tiny capitalize text-default-400">{item?.team}</p>
+                                                        <p className="text-bold text-small text-white">{item?.id} hrs</p>
+                                                        <p className="text-bold text-tiny capitalize text-default-400">Streaming Threshold</p>
                                                     </div>
                                                 </div>
                                                 <div className={'w-full flex flex-shrink-1'}>
-                                                    <p className="text-bold text-small capitalize text-white">8:30 AM -
-                                                        5:34 PM</p>
+                                                    <div className="flex flex-col">
+                                                        <p className="text-bold text-small capitalize text-white">8:30 AM -
+                                                            5:34 PM</p>
+                                                        <p className="text-bold text-tiny capitalize text-default-400">Reporting Timeframe</p>
+                                                    </div>
                                                 </div>
                                                 <div className={'w-full flex flex-shrink-1'}>
-                                                    {/*<Chip className="capitalize" color={'success'} size="sm"*/}
-                                                    {/*      variant="flat">*/}
-                                                    {/*    Status*/}
-                                                    {/*</Chip>*/}
+                                                    <div className="flex flex-col">
+                                                        <p className="text-bold text-small capitalize text-white">3</p>
+                                                        <p className="text-bold text-tiny capitalize text-default-400">Livestreams</p>
+                                                    </div>
                                                 </div>
-                                                <div className={'min-w-[100px] w-[100px] flex '}>
-                                                    <Chip className="capitalize" color={'success'} size="sm"
-                                                          variant="flat">
-                                                        Status
-                                                    </Chip>
+                                                <div className={'min-w-[100px] w-[100px] flex-col items-start flex-grow-0 justify-center flex h-[40px] '}>
+                                                    <div className="flex flex-col">
+                                                        <Chip className="capitalize" color={'success'} size="sm"
+                                                              variant="flat">
+                                                            Status
+                                                        </Chip>
+                                                    </div>
+
                                                 </div>
                                                 <div className={'min-w-[80px] w-[80px]'}/>
                                             </div>
