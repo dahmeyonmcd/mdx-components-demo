@@ -40,227 +40,36 @@ export const statusOptions = [
     {name: "Vacation", uid: "vacation"},
 ];
 
-export const users = [
-    {
-        id: 1,
-        name: "Tony Reichert",
-        role: "CEO",
-        team: "Management",
-        status: "active",
-        age: "29",
-        avatar: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
-        email: "tony.reichert@example.com",
-    },
-    {
-        id: 2,
-        name: "Zoey Lang",
-        role: "Tech Lead",
-        team: "Development",
-        status: "paused",
-        age: "25",
-        avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
-        email: "zoey.lang@example.com",
-    },
-    {
-        id: 3,
-        name: "Jane Fisher",
-        role: "Sr. Dev",
-        team: "Development",
-        status: "active",
-        age: "22",
-        avatar: "https://i.pravatar.cc/150?u=a04258114e29026702d",
-        email: "jane.fisher@example.com",
-    },
-    {
-        id: 4,
-        name: "William Howard",
-        role: "C.M.",
-        team: "Marketing",
-        status: "vacation",
-        age: "28",
-        avatar: "https://i.pravatar.cc/150?u=a048581f4e29026701d",
-        email: "william.howard@example.com",
-    },
-    {
-        id: 5,
-        name: "Kristen Copper",
-        role: "S. Manager",
-        team: "Sales",
-        status: "active",
-        age: "24",
-        avatar: "https://i.pravatar.cc/150?u=a092581d4ef9026700d",
-        email: "kristen.cooper@example.com",
-    },
-    {
-        id: 6,
-        name: "Brian Kim",
-        role: "P. Manager",
-        team: "Management",
-        age: "29",
-        avatar: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
-        email: "brian.kim@example.com",
-        status: "Active",
-    },
-    {
-        id: 7,
-        name: "Michael Hunt",
-        role: "Designer",
-        team: "Design",
-        status: "paused",
-        age: "27",
-        avatar: "https://i.pravatar.cc/150?u=a042581f4e29027007d",
-        email: "michael.hunt@example.com",
-    },
-    {
-        id: 8,
-        name: "Samantha Brooks",
-        role: "HR Manager",
-        team: "HR",
-        status: "active",
-        age: "31",
-        avatar: "https://i.pravatar.cc/150?u=a042581f4e27027008d",
-        email: "samantha.brooks@example.com",
-    },
-    {
-        id: 9,
-        name: "Frank Harrison",
-        role: "F. Manager",
-        team: "Finance",
-        status: "vacation",
-        age: "33",
-        avatar: "https://i.pravatar.cc/150?img=4",
-        email: "frank.harrison@example.com",
-    },
-    {
-        id: 10,
-        name: "Emma Adams",
-        role: "Ops Manager",
-        team: "Operations",
-        status: "active",
-        age: "35",
-        avatar: "https://i.pravatar.cc/150?img=5",
-        email: "emma.adams@example.com",
-    },
-    {
-        id: 11,
-        name: "Brandon Stevens",
-        role: "Jr. Dev",
-        team: "Development",
-        status: "active",
-        age: "22",
-        avatar: "https://i.pravatar.cc/150?img=8",
-        email: "brandon.stevens@example.com",
-    },
-    {
-        id: 12,
-        name: "Megan Richards",
-        role: "P. Manager",
-        team: "Product",
-        status: "paused",
-        age: "28",
-        avatar: "https://i.pravatar.cc/150?img=10",
-        email: "megan.richards@example.com",
-    },
-    {
-        id: 13,
-        name: "Oliver Scott",
-        role: "S. Manager",
-        team: "Security",
-        status: "active",
-        age: "37",
-        avatar: "https://i.pravatar.cc/150?img=12",
-        email: "oliver.scott@example.com",
-    },
-    {
-        id: 14,
-        name: "Grace Allen",
-        role: "M. Specialist",
-        team: "Marketing",
-        status: "active",
-        age: "30",
-        avatar: "https://i.pravatar.cc/150?img=16",
-        email: "grace.allen@example.com",
-    },
-    {
-        id: 15,
-        name: "Noah Carter",
-        role: "IT Specialist",
-        team: "I. Technology",
-        status: "paused",
-        age: "31",
-        avatar: "https://i.pravatar.cc/150?img=15",
-        email: "noah.carter@example.com",
-    },
-    {
-        id: 16,
-        name: "Ava Perez",
-        role: "Manager",
-        team: "Sales",
-        status: "active",
-        age: "29",
-        avatar: "https://i.pravatar.cc/150?img=20",
-        email: "ava.perez@example.com",
-    },
-    {
-        id: 17,
-        name: "Liam Johnson",
-        role: "Data Analyst",
-        team: "Analysis",
-        status: "active",
-        age: "28",
-        avatar: "https://i.pravatar.cc/150?img=33",
-        email: "liam.johnson@example.com",
-    },
-    {
-        id: 18,
-        name: "Sophia Taylor",
-        role: "QA Analyst",
-        team: "Testing",
-        status: "active",
-        age: "27",
-        avatar: "https://i.pravatar.cc/150?img=29",
-        email: "sophia.taylor@example.com",
-    },
-    {
-        id: 19,
-        name: "Lucas Harris",
-        role: "Administrator",
-        team: "Information Technology",
-        status: "paused",
-        age: "32",
-        avatar: "https://i.pravatar.cc/150?img=50",
-        email: "lucas.harris@example.com",
-    },
-    {
-        id: 20,
-        name: "Mia Robinson",
-        role: "Coordinator",
-        team: "Operations",
-        status: "active",
-        age: "26",
-        avatar: "https://i.pravatar.cc/150?img=45",
-        email: "mia.robinson@example.com",
-    },
-];
-
 export function capitalize(s: any) {
     return s ? s.charAt(0).toUpperCase() + s.slice(1).toLowerCase() : "";
 }
 
 const statusColorMap = {
-    active: "success",
-    paused: "danger",
-    vacation: "warning",
+    complete: "success",
+    denied: "danger",
+    needs_attention: "warning",
+    in_progress: "secondary",
+    not_started: "default",
+    unknown: 'default'
+};
+
+const statusTextMap = {
+    complete: "Completed",
+    denied: "Demied",
+    needs_attention: "Need Attention",
+    in_progress: "In Progress",
+    not_started: "Not Started",
+    unknown: 'Unknown'
 };
 
 const INITIAL_VISIBLE_COLUMNS = ["name", "role", "status", "actions"];
 
 interface Props {
-    data: any;
+    data: any[];
     isLoading: boolean;
 }
 
-export default function ReportingAdminTable({ isLoading }: Props) {
+export default function ReportingAdminTable({ isLoading, data }: Props) {
 
     const [expandedRows, setExpandedRows] = useState<number[]>([]);
     const [filterValue, setFilterValue] = useState<string>("");
@@ -284,21 +93,21 @@ export default function ReportingAdminTable({ isLoading }: Props) {
     }, [visibleColumns]);
 
     const filteredItems = useMemo(() => {
-        let filteredUsers = [...users];
+        let filteredTimesheets = [...data];
 
         if (hasSearchFilter) {
-            filteredUsers = filteredUsers.filter((user) =>
-                user.name.toLowerCase().includes(filterValue.toLowerCase()),
+            filteredTimesheets = filteredTimesheets.filter((timesheet) =>
+                timesheet?.mentor?.name.toLowerCase().includes(filterValue.toLowerCase()),
             );
         }
         if (statusFilter !== "all" && Array.from(statusFilter).length !== statusOptions.length) {
-            filteredUsers = filteredUsers.filter((user) =>
-                Array.from(statusFilter).includes(user.status),
+            filteredTimesheets = filteredTimesheets.filter((timesheet) =>
+                Array.from(statusFilter).includes(timesheet?.payment_data?.status),
             );
         }
 
-        return filteredUsers;
-    }, [users, filterValue, statusFilter]);
+        return filteredTimesheets;
+    }, [data, filterValue, statusFilter]);
 
     const pages = Math.ceil(filteredItems.length / rowsPerPage);
 
@@ -332,6 +141,22 @@ export default function ReportingAdminTable({ isLoading }: Props) {
                 setExpandedRows(expandedRows.filter((row: number) => row !== index));
             }
             setCount(count + 1)
+        }
+    }
+
+    function parseStatus(text_status: string) {
+        if (text_status === "complete") {
+            return { color: 'success' as "success" | "danger" | "warning" | "secondary" | "default" | "primary" | undefined, text: 'Completed'}
+        } else if (text_status === "denied") {
+            return { color: 'danger' as "success" | "danger" | "warning" | "secondary" | "default" | "primary" | undefined, text: 'Denied'}
+        } else if (text_status === "needs_attention") {
+            return { color: 'warning' as "success" | "danger" | "warning" | "secondary" | "default" | "primary" | undefined, text: 'Needs Attention'}
+        } else if (text_status === "in_progress") {
+            return { color: 'secondary' as "success" | "danger" | "warning" | "secondary" | "default" | "primary" | undefined, text: 'In Progress'}
+        } else if (text_status === "not_started") {
+            return { color: 'default' as "success" | "danger" | "warning" | "secondary" | "default" | "primary" | undefined, text: 'Not Started'}
+        } else {
+            return { color: 'default' as "success" | "danger" | "warning" | "secondary" | "default" | "primary" | undefined, text: 'Unknown'}
         }
     }
 
@@ -453,7 +278,7 @@ export default function ReportingAdminTable({ isLoading }: Props) {
         statusFilter,
         visibleColumns,
         onRowsPerPageChange,
-        users.length,
+        data.length,
         onSearchChange,
         hasSearchFilter,
     ]);
@@ -491,6 +316,7 @@ export default function ReportingAdminTable({ isLoading }: Props) {
         );
     }, [selectedKeys, items.length, page, pages, hasSearchFilter]);
 
+
     return (
         <Table
             isStriped={true}
@@ -524,9 +350,9 @@ export default function ReportingAdminTable({ isLoading }: Props) {
             </TableHeader>
             <TableBody isLoading={isLoading} loadingContent={<Spinner color={'warning'} size={'lg'} variant={'gradient'} className={'text-white dark'} label={'Loading...'} />} emptyContent={"No users found"} items={sortedItems}>
                 {(item: any) => (
-                    <TableRow key={item.id}>
+                    <TableRow key={item?.mentor?.id}>
                         <TableCell>
-                            <Accordion onExpandedChange={(e) => handleRowSelection(item?.id, e)}  className={'dark w-full'}>
+                            <Accordion onExpandedChange={(e) => handleRowSelection(item?.mentor?.id, e)}  className={'dark w-full'}>
                                 <AccordionItem
                                     className={'text-white'}
                                     key="1"
@@ -534,10 +360,10 @@ export default function ReportingAdminTable({ isLoading }: Props) {
                                     subtitle=""
                                     title={
                                         <div className={'w-full flex flex-col justify-start mb-90'}>
-                                            {expandedRows.includes(item.id) && (
+                                            {expandedRows.includes(item?.mentor?.id) && (
 
                                                 <div className={'w-full flex flex-row justify-between'}>
-                                                    <p className={'text-[13px] text-white min-w-[280px] w-[280px]'}>Educator
+                                                    <p className={'text-[13px] text-white min-w-[300px] w-[300px]'}>Educator
                                                         /
                                                         Mentor</p>
                                                     <p className={'text-[13px] text-white w-full flex-shrink'}>Date</p>
@@ -547,26 +373,26 @@ export default function ReportingAdminTable({ isLoading }: Props) {
                                                     <div className={'min-w-[80px] w-[80px]'}/>
                                                 </div>
                                             )}
-                                            {expandedRows.includes(item.id) && (
+                                            {expandedRows.includes(item?.mentor?.id) && (
                                                 <Divider className={'mb-3 mt-2 dark'}/>
                                             )}
 
                                             <div className={'w-full flex flex-row justify-between'}>
-                                                <div className={'min-w-[280px] w-[280px] flex '}>
+                                                <div className={'min-w-[300px] w-[300px] flex '}>
                                                     <User
                                                         className={'text-white'}
-                                                        avatarProps={{radius: "lg", src: item?.avatar}}
+                                                        avatarProps={{radius: "lg", src: `https://mdxalgo.com/storage/${item?.mentor?.photo}`}}
                                                         description={
-                                                            <p className={'text-[#FF9900]'}>{item?.email}</p>
+                                                            <p className={'text-[#FF9900]'}>{item?.mentor?.subtitle ?? 'Instructor'}</p>
                                                         }
-                                                        name={item?.name}
+                                                        name={item?.mentor?.name}
                                                     >
-                                                        {item?.email}
+                                                        {item?.mentor?.email}
                                                     </User>
                                                 </div>
                                                 <div className={'w-full flex flex-shrink-1'}>
                                                     <div className="flex flex-col">
-                                                        <p className="text-bold text-small text-white">{item?.id} hrs</p>
+                                                        <p className="text-bold text-small text-white">~ {item?.threshold?.required ?? "0"} hrs</p>
                                                         <p className="text-bold text-tiny capitalize text-default-400">Streaming Threshold</p>
                                                     </div>
                                                 </div>
@@ -579,15 +405,15 @@ export default function ReportingAdminTable({ isLoading }: Props) {
                                                 </div>
                                                 <div className={'w-full flex flex-shrink-1'}>
                                                     <div className="flex flex-col">
-                                                        <p className="text-bold text-small capitalize text-white">3</p>
+                                                        <p className="text-bold text-small capitalize text-white">{item?.payment_data?.live_sessions}</p>
                                                         <p className="text-bold text-tiny capitalize text-default-400">Livestreams</p>
                                                     </div>
                                                 </div>
                                                 <div className={'min-w-[100px] w-[100px] flex-col items-start flex-grow-0 justify-center flex h-[40px] '}>
                                                     <div className="flex flex-col">
-                                                        <Chip className="capitalize" color={'success'} size="sm"
+                                                        <Chip className="capitalize" color={parseStatus(item?.payment_data?.status)?.color} size="sm"
                                                               variant="flat">
-                                                            Status
+                                                            {parseStatus(item?.payment_data?.status)?.text}
                                                         </Chip>
                                                     </div>
 
@@ -612,17 +438,19 @@ export default function ReportingAdminTable({ isLoading }: Props) {
                                                 <p className={'text-[13px] text-white min-w-[150px] w-[150px]'}></p>
                                                 <div className={'min-w-[80px] w-[80px]'}/>
                                             </div>
-                                            <AdminReportingStreamsBox/>
+                                            <AdminReportingStreamsBox sessions={item?.live_sessions}/>
                                         </div>
-                                        <div className={'w-full flex flex-row justify-end mt-3'}>
-                                            <Alert
-                                                hideIconWrapper
-                                                color="danger"
-                                                description="This mentor hans't reached their required threshold for the month yet"
-                                                title="Threshold Alert"
-                                                variant="solid"
-                                            />
-                                        </div>
+                                        {item?.messages?.length > 0 && (
+                                            <div className={'w-full flex flex-row justify-end mt-3'}>
+                                                <Alert
+                                                    hideIconWrapper
+                                                    color="danger"
+                                                    description={item?.messages[0]?.message}
+                                                    title={item?.messages[0]?.title}
+                                                    variant="solid"
+                                                />
+                                            </div>
+                                        )}
                                     </div>
 
                                 </AccordionItem>
