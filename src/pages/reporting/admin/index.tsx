@@ -1,4 +1,3 @@
-import AnalyticsView from "@/pages/reporting/components/AnalyticsView";
 import ReportingAdminTable from "@/pages/reporting/admin/components/ReportingAdminTable";
 import AdminAnalyticsView from "@/pages/reporting/admin/components/components/AdminAnalyticsView";
 

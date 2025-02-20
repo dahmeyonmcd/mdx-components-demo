@@ -46,22 +46,22 @@ export default function App({ Component, pageProps }: AppProps) {
 
     }, [validated, initialized]);
 
-    return(
-        <HeroUIProvider><Component {...pageProps} /></HeroUIProvider>
-    )
-      // return(
-      //     <HeroUIProvider>
-      //         {initialized ? (
-      //             <>
-      //                 { validated ? (
-      //                     <Component {...pageProps} />
-      //                 ): (
-      //                     <></>
-      //                 )}
-      //             </>
-      //         ): (
-      //             <LoadingView />
-      //         )}
-      //     </HeroUIProvider>
-      // );
+    // return(
+    //     <HeroUIProvider><Component {...pageProps} /></HeroUIProvider>
+    // )
+      return(
+          <HeroUIProvider>
+              {initialized ? (
+                  <>
+                      { validated ? (
+                          <Component {...pageProps} />
+                      ): (
+                          <></>
+                      )}
+                  </>
+              ): (
+                  <LoadingView />
+              )}
+          </HeroUIProvider>
+      );
 }
