@@ -9,7 +9,7 @@ const statusColorMap = [
     {status: "vacation", color: "warning"}
 ]
 
-export default function AdminReportingUserCell({data}: any) {
+export default function MentorReportingUserCell({data}: any) {
 
     return(
         <AccordionItem

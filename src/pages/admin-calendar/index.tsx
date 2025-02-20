@@ -31,7 +31,7 @@ export default function Page() {
 
     function handleDateSelection(date: Date) {
         // const formattedDate = date.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-        console.log(date);
+        // console.log(date);
         setSelectedDate(date)
         const parsedFilteredEvents = events.filter((event) => (new Date(event.date).getDate() === date.getDate() && new Date(event.date).getMonth() === date.getMonth() && new Date(event.date).getFullYear() === date.getFullYear()));
         setFilteredEvents(parsedFilteredEvents);
