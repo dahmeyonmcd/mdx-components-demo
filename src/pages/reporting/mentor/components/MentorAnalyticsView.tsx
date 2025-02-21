@@ -1,6 +1,10 @@
 import {Image} from "@heroui/react";
 
-export default function MentorAnalyticsView() {
+interface Props {
+    metrics?: any
+}
+
+export default function MentorAnalyticsView({ metrics }: Props) {
 
     return (
         <div className="stats shadow bg-[#282828] flex flex-row px-6 py-4 rounded-[12px]">
@@ -8,7 +12,7 @@ export default function MentorAnalyticsView() {
                 <div className={'flex flex-col '}>
                     <div className="stat-title text-white text-[13px]"><strong>Hours This Month</strong></div>
                     <div style={{fontFamily: 'DarkForest', fontWeight: 400}}
-                         className="stat-value text-[#FF9900] text-[25px]">65:00 hrs
+                         className="stat-value text-[#FF9900] text-[25px]">{metrics ? metrics?.total_hours : "0"} hrs
                     </div>
                     <div style={{fontFamily: 'Pixidot', fontWeight: 400}} className="stat-desc text-white text-[13px]">You've met your threshold</div>
                 </div>
@@ -17,11 +21,11 @@ export default function MentorAnalyticsView() {
 
             <div className={'h-full w-[1px] bg-[#4E4E4E] mx-5'}/>
 
-            <div className="stat flex flex-row items-center justify-start gap-3">
+            <div className="stat flex flex-row items-center justify-start gap-3 min-w-[150px]">
                 <div className={'flex flex-col '}>
                     <div className="stat-title text-white text-[13px]"><strong>Overtime</strong></div>
                     <div style={{fontFamily: 'DarkForest', fontWeight: 400}}
-                         className="stat-value text-[#FF9900] text-[25px]">0:20 hrs
+                         className="stat-value text-[#FF9900] text-[25px]">{metrics ? metrics?.overtime : "0"} hrs
                     </div>
                     <div style={{fontFamily: 'Pixidot', fontWeight: 400}}
                          className="stat-desc text-white text-[13px]">Keep going!
@@ -35,7 +39,7 @@ export default function MentorAnalyticsView() {
             <div className="stat flex flex-row items-center justify-start gap-6">
                 <div className={'flex flex-col justify-start'}>
                     <div style={{fontFamily: 'DarkForest', fontWeight: 400}}
-                         className="stat-value text-[25px] text-success">$3532
+                         className="stat-value text-[25px] text-success">${metrics ? metrics?.paid : "0"}
                     </div>
                     <div className="text-[13px] stat-title text-white">Total paid</div>
                     <div style={{fontFamily: 'Pixidot', fontWeight: 400}}

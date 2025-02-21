@@ -16,20 +16,24 @@ export default function Page() {
 
     const [selectedTimesheet, setSelectedTimesheet] = useState<any | null>(null);
 
-    const [mentorData, setMentorData] = useState<any | undefined>(undefined);
+    const [metrics, setMetrics] = useState<any | undefined>(undefined);
     const [data, setData] = useState<any[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
     async function initializePage() {
         setData([]);
         setIsLoading(true)
-        setMentorData(undefined);
+        setMetrics(undefined);
         try {
             const dataResponse = await NetworkingAPI.fetchDataFullResponse('timesheet/instructor/overview/retrieve', 'POST', { instructor_id: 8 }, undefined);
-            const result = dataResponse?.response?.live_sessions
+            const result = dataResponse?.response
             if (result) {
-                setData(result)
+                const fetchedSessions = result?.result?.live_sessions
+                const fetchedMetrics = result?.metrics
+                setMetrics(fetchedMetrics)
+                setData(fetchedSessions)
             } else {
+                setMetrics(undefined)
                 setData([])
             }
             setIsLoading(false)
@@ -63,7 +67,7 @@ export default function Page() {
     return(
         <>
             <div className={'relative bg-black w-screen h-screen flex flex-col items-start justify-start px-[0px]'}>
-                <MentorAnalyticsView/>
+                <MentorAnalyticsView metrics={metrics}/>
                 <ReportingMentorTable handleCreateNew={() => setTimesheetShowModal(true)} data={data} isLoading={isLoading} handleSelection={handleTimesheetSelection}/>
             </div>
 
@@ -78,13 +82,16 @@ export default function Page() {
             )}
 
             {showEditTimesheetModal && (
-                <UpdateTimesheetDialog timesheet={selectedTimesheet} open={!!selectedTimesheet} onClose={() => {
+                <UpdateTimesheetDialog timesheet={selectedTimesheet} open={showEditTimesheetModal} onClose={() => {
                     setSelectedTimesheet(null);
-                    setTimesheetShowModal(false);
+                    setEditTimesheetShowModal(false);
                 }} handleCancel={() => {
                     setSelectedTimesheet(null);
-                    setTimesheetShowModal(false);
-                }} onSuccess={() => initializePage()}/>
+                    setEditTimesheetShowModal(false);
+                }} onSuccess={async () => {
+                    await initializePage()
+                    setEditTimesheetShowModal(false);
+                }}/>
             )}
 
             {showCancelModal && (

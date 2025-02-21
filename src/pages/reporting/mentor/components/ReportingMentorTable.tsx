@@ -346,22 +346,22 @@ export default function ReportingMentorTable({ isLoading, data, handleSelection,
                                     subtitle=""
                                     title={
                                         <div className={'w-full flex flex-col justify-start mb-90'}>
-                                            {expandedRows.includes(item?.timesheet?.id) && (
+                                            {/*{expandedRows.includes(item?.timesheet?.id) && (*/}
 
-                                                <div className={'w-full flex flex-row justify-between'}>
-                                                    <p className={'text-[13px] text-white min-w-[300px] w-[300px]'}>Educator
-                                                        /
-                                                        Mentor</p>
-                                                    <p className={'text-[13px] text-white w-full flex-shrink'}>Date</p>
-                                                    <p className={'text-[13px] text-white w-full flex-shrink'}>Time-in-out</p>
-                                                    <p className={'text-[13px] text-white w-full flex-shrink'}>Livestreams</p>
-                                                    <p className={'text-[13px] text-white min-w-[100px] w-[100px]'}>Status</p>
-                                                    <div className={'min-w-[80px] w-[80px]'}/>
-                                                </div>
-                                            )}
-                                            {expandedRows.includes(item?.timesheet?.id) && (
-                                                <Divider className={'mb-3 mt-2 dark'}/>
-                                            )}
+                                            {/*    <div className={'w-full flex flex-row justify-between'}>*/}
+                                            {/*        <p className={'text-[13px] text-white min-w-[300px] w-[300px]'}>Educator*/}
+                                            {/*            /*/}
+                                            {/*            Mentor</p>*/}
+                                            {/*        <p className={'text-[13px] text-white w-full flex-shrink'}>Date</p>*/}
+                                            {/*        <p className={'text-[13px] text-white w-full flex-shrink'}>Time-in-out</p>*/}
+                                            {/*        <p className={'text-[13px] text-white w-full flex-shrink'}>Livestreams</p>*/}
+                                            {/*        <p className={'text-[13px] text-white min-w-[100px] w-[100px]'}>Status</p>*/}
+                                            {/*        <div className={'min-w-[80px] w-[80px]'}/>*/}
+                                            {/*    </div>*/}
+                                            {/*)}*/}
+                                            {/*{expandedRows.includes(item?.timesheet?.id) && (*/}
+                                            {/*    <Divider className={'mb-3 mt-2 dark'}/>*/}
+                                            {/*)}*/}
 
                                             <div className={'w-full flex flex-row justify-between'}>
                                                 <div className={'min-w-[300px] w-[300px] flex '}>
@@ -369,29 +369,31 @@ export default function ReportingMentorTable({ isLoading, data, handleSelection,
                                                         className={'text-white'}
                                                         avatarProps={{radius: "lg",}}
                                                         description={
-                                                            <p className={'text-[#FF9900]'}>{item?.mentor?.subtitle ?? 'Instructor'}</p>
+                                                            <p className={'text-[#FF9900]'}>Scheduled Live Event</p>
                                                         }
                                                         name={item?.session?.title}
                                                     >
-                                                        {item?.session?.email}
+                                                        {item?.session?.title}
                                                     </User>
                                                 </div>
                                                 <div className={'w-full flex flex-shrink-1'}>
                                                     <div className="flex flex-col">
-                                                        <p className="text-bold text-small text-white">{item?.payment_data?.duration ?? "0"} hrs</p>
+                                                        <p className="text-bold text-small text-white">{item?.timesheet?.total_duration ? (`${item?.timesheet?.total_duration ?? "0"} hrs`) : <span className={"text-[#717171] italic"}>No Hours Logged</span>}</p>
                                                         <p className="text-bold text-tiny capitalize text-default-400">Accumulated Hours</p>
                                                     </div>
                                                 </div>
                                                 <div className={'w-full flex flex-shrink-1'}>
                                                     <div className="flex flex-col">
-                                                        <p className="text-bold text-small capitalize text-white">{new Date(item?.timesheet?.clock_in).toLocaleTimeString()} - {item?.timesheet?.clock_out ? new Date(item?.timesheet?.clock_out).toLocaleTimeString() : "Not Yet Entered"}</p>
+                                                        <p className="text-bold text-small capitalize text-white">{new Date(item?.timesheet?.clock_in).toLocaleTimeString()} - {item?.timesheet?.clock_out ? new Date(item?.timesheet?.clock_out).toLocaleTimeString() :
+                                                            <span
+                                                                className={"text-[#717171] italic"}>Not Yet Entered</span>}</p>
                                                         <p className="text-bold text-tiny capitalize text-default-400">Reporting
                                                             Timeframe</p>
                                                     </div>
                                                 </div>
                                                 <div className={'w-full flex flex-shrink-1'}>
                                                     <div className="flex flex-col">
-                                                        <p className="text-bold text-small capitalize text-white">{item?.timesheet?.amount ?? (<span className={'text-[#8C8C8C]'}>Unpaid</span>)}</p>
+                                                        <p className="text-bold text-small capitalize text-white">{item?.timesheet?.amount ?? (<span className={'text-[#717171] italic'}>Unpaid</span>)}</p>
                                                         <p className="text-bold text-tiny capitalize text-default-400">Payout Amount</p>
                                                     </div>
                                                 </div>

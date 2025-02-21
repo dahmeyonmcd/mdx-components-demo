@@ -97,7 +97,9 @@ export default function TimesheetDecisionDialog({ open, onClose, handleCancel, o
             if (time instanceof ZonedDateTime) {
                 const timeString = time.toAbsoluteString()
                 console.log(timeString)
-                setStartTimestamp(timeString)
+                setEndTimestamp(timeString)
+            } else {
+                console.log(time)
             }
         }
     }
