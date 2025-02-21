@@ -1,4 +1,5 @@
 import {Divider, Image} from "@heroui/react";
+import moment from "moment/moment";
 
 interface Props {
     index: number;
@@ -8,20 +9,28 @@ interface Props {
 
 export default function TradingEventSlot({ index, handleSelection, event }: Props) {
 
+    function constructTime() {
+        if (event) {
+            const utcDate = `${event?.date}T${event?.time}Z`
+            const localDate = moment(utcDate).local();
+            return localDate.format('dddd [@] h:mm A');
+        }
+        return "UNKNOWN"
+    }
+
     return (
         <div onClick={() => handleSelection(event)} key={index}
              className={'w-full bg-[#282828] flex flex-col items-start justify-start px-[5px] pt-[5px] pb-[5px] mb-2 cursor-pointer'}>
             <div className={'w-full bg-[#FF9900] py-[5px] flex flex-row justify-start items-center px-2'}>
-                <div style={{fontFamily: 'Pixidot', fontWeight: 400}} className={'text-black text-[14px]'}>Tuesday @
-                    14:00 PM
+                <div style={{fontFamily: 'Pixidot', fontWeight: 400}} className={'text-black text-[14px]'}>{constructTime()}
                 </div>
             </div>
             <div className={'flex flex-row w-full flex-shrink-0 gap-2'}>
-                <Image removeWrapper={true} radius={'none'} src="https://heroui.com/images/card-example-4.jpeg"
+                <Image removeWrapper={true} radius={'none'} src={`https://mdxalgo.com/storage/${event?.educator_photo}`}
                        className={'w-[190px] h-[130px] bg-black mt-[5px] object-cover'}/>
                 <div className={'w-full flex flex-col items-start justify-start px-2 py-3 gap-2 mt-0 mb-0'}>
                     <div style={{fontFamily: 'DarkForest', fontWeight: 400}}
-                         className={'text-white text-[15px] leading-[15px]'}>Live Market Updates
+                         className={'text-white text-[15px] leading-[15px]'}>{event?.title}
                     </div>
                     <div className={'text-[#D1D1D1] text-[13px] leading-[18px]'}>Get more than just spectactular games
                         and
@@ -34,8 +43,8 @@ export default function TradingEventSlot({ index, handleSelection, event }: Prop
                         {/*       src="https://heroui.com/images/card-example-4.jpeg"*/}
                         {/*       className={'w-[30px] h-[30px] border-white border-[2px]'}/>*/}
                         <div className={'flex flex-col items-start justify-start gap-0'}>
-                            <div style={{fontWeight: 800}} className={'text-white text-[12px]'}>Dahmeyon McDonald</div>
-                            <div style={{fontFamily: 'Pixidot', fontWeight: 400}} className={'text-[#FF9900] text-[12px]'}>Market Indicator Specialist</div>
+                            <div style={{fontWeight: 800}} className={'text-white text-[12px]'}>{event?.educator_name}</div>
+                            <div style={{fontFamily: 'Pixidot', fontWeight: 400}} className={'text-[#FF9900] text-[12px]'}>{event?.educator_bio}</div>
                         </div>
                     </div>
                 </div>

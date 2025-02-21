@@ -13,6 +13,7 @@ export default function Calendar({ events, triggerModal, modalOpen, triggeredDat
     const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
     const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
     const [selectedDate, setSelectedDate] = useState<string | null>(null);
+    const [selectedDateOBJ, setSelectedDateOBJ] = useState<Date | null>(null);
 
     const [selectedEvent, setSelectedEvent] = useState<any | null>(null);
     const [showEventForm, setShowEventForm] = useState(false);
@@ -35,7 +36,10 @@ export default function Calendar({ events, triggerModal, modalOpen, triggeredDat
         const filteredEvents = (events ?? []).filter((event) => (new Date(event.date).getDate() === selectedDate.getDate() && new Date(event.date).getMonth() === selectedDate.getMonth() && new Date(event.date).getFullYear() === selectedDate.getFullYear()));
         if (filteredEvents.length === 0) {
             return (
-                <div onClick={() => triggeredDate(selectedDate)} className={'w-full h-[90%] flex-col flex-shrink flex items-start justify-start'}>
+                <div onClick={() => {
+                    setSelectedDateOBJ(selectedDate)
+                    triggeredDate(selectedDate)
+                }} className={'w-full h-[90%] flex-col flex-shrink flex items-start justify-start'}>
                     <p className={'text-[#B5B5B5] text-[14px]'}><strong>No Events</strong></p>
                     <p style={{fontFamily: 'Pixidot', fontWeight: 400}} className={'text-[#878787] text-[13px]'}>Tap to add new</p>
                 </div>
@@ -47,6 +51,8 @@ export default function Calendar({ events, triggerModal, modalOpen, triggeredDat
                     <div style={{fontFamily: 'Pixidot', fontWeight: 400}}
                          className="px-3 pt-2 w-full text-white text-[13px]"
                          onClick={() => {
+                             console.log(selectedDate)
+                             setSelectedDateOBJ(selectedDate)
                              triggeredDate(selectedDate)
                          }}
                     >
@@ -135,6 +141,10 @@ export default function Calendar({ events, triggerModal, modalOpen, triggeredDat
         // }
     };
 
+    useEffect(() => {
+
+    }, [selectedDateOBJ]);
+
     return (
         <>
             <div className="w-[60%] h-screen">
@@ -150,7 +160,7 @@ export default function Calendar({ events, triggerModal, modalOpen, triggeredDat
                     <div className="grid grid-cols-7 gap-2 p-4">
                         {daysOfWeek.map((day) => (
                             <div style={{fontFamily: 'DarkForest', fontWeight: 400}} key={day}
-                                 className="text-center font-semibold text-white text-[15px]">{day}</div>
+                                 className={`text-center font-semibold text-white text-[15px]`}>{day}</div>
                         ))}
                         {generateCalendar(currentYear, currentMonth).map((day, index) => (
                             day ? (
@@ -162,9 +172,9 @@ export default function Calendar({ events, triggerModal, modalOpen, triggeredDat
                                 //     {day}
                                 // </div>
                                 <div onClick={() => handleDayClick(day)} key={day}
-                                     className="p-2 min-h-[100px] bg-[#282828]">
+                                     className={`p-2 min-h-[100px] bg-[#282828] ${selectedDateOBJ?.toDateString() === new Date(currentYear, currentMonth, day).toDateString() ? 'border-[#FF9900] border-[1px]' : ''}`}>
                                     <div style={{fontFamily: 'DarkForest', fontWeight: 400}}
-                                         className="text-[18px] font-bold text-white mb-0">{day}
+                                         className={`${new Date().toDateString() === new Date(currentYear, currentMonth, day).toDateString() ? 'text-[#FF9900]' : 'text-white'} text-[18px] font-bold  mb-0`}>{day}
                                     </div>
                                     {renderEventsForDay(day)}
                                 </div>

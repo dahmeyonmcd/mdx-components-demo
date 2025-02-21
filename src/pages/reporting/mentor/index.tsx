@@ -10,6 +10,8 @@ import CancellationPromptDialog from "@/pages/reporting/mentor/components/Cancel
 
 export default function Page() {
 
+    const [instructorId, setInstructorId] = useState<any | null>(null);
+
     const [showTimesheetModal, setTimesheetShowModal] = useState(false);
     const [showEditTimesheetModal, setEditTimesheetShowModal] = useState(false);
     const [showCancelModal, setShowCancelModal] = useState(false);
@@ -21,26 +23,37 @@ export default function Page() {
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
     async function initializePage() {
-        setData([]);
-        setIsLoading(true)
-        setMetrics(undefined);
-        try {
-            const dataResponse = await NetworkingAPI.fetchDataFullResponse('timesheet/instructor/overview/retrieve', 'POST', { instructor_id: 8 }, undefined);
-            const result = dataResponse?.response
-            if (result) {
-                const fetchedSessions = result?.result?.live_sessions
-                const fetchedMetrics = result?.metrics
-                setMetrics(fetchedMetrics)
-                setData(fetchedSessions)
-            } else {
-                setMetrics(undefined)
+
+        const params = location.search
+        if (params.includes("?instructor=")) {
+            const instructor_parts = params.split("?instructor=")
+            const instructorId = instructor_parts[instructor_parts.length - 1]
+            setInstructorId(instructor_parts[instructor_parts.length - 1])
+
+            setData([]);
+            setIsLoading(true)
+            setMetrics(undefined);
+            try {
+                const payload = { instructor_id: instructorId }
+                const dataResponse = await NetworkingAPI.fetchDataFullResponse('timesheet/instructor/overview/retrieve', 'POST', payload, undefined);
+                const result = dataResponse?.response
+                if (result) {
+                    const fetchedSessions = result?.result?.live_sessions
+                    const fetchedMetrics = result?.metrics
+                    setMetrics(fetchedMetrics)
+                    setData(fetchedSessions)
+                } else {
+                    setMetrics(undefined)
+                    setData([])
+                }
+                setIsLoading(false)
+            } catch (error) {
+                console.error(error)
                 setData([])
+                setIsLoading(false)
             }
-            setIsLoading(false)
-        } catch (error) {
-            console.error(error)
-            setData([])
-            setIsLoading(false)
+        } else {
+            return console.log('NOT FOUND')
         }
     }
 
