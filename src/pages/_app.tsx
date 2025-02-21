@@ -4,7 +4,6 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import {HeroUIProvider} from "@heroui/react";
 import {useEffect, useState} from "react";
-import {useSearchParams} from "next/navigation";
 import NetworkingAPI from "@/helpers/NetworkingAPI";
 import LoadingView from "@/components/LoadingView";
 
@@ -16,8 +15,18 @@ export default function App({ Component, pageProps }: AppProps) {
     async function validate() {
         const params = location.search
         const parts = params.split("?token=")
-        if (parts.length > 1) {
-            const token = parts[parts.length - 1]
+        let token;
+        if (params.includes("?instructor=")) {
+            const token_parts = params.split("?token=")
+            const token_first = token_parts[token_parts.length - 1]
+            const token_split = token_first.split('?instructor=')
+            token = token_split[0]
+        } else if (params.includes("token=")) {
+            console.log("parts", parts[parts.length - 1]);
+            token = parts[parts.length - 1]
+        }
+
+        if (token) {
             try {
                 const dataResponse = await NetworkingAPI.fetchDataFullResponse('livestream/schedule', 'GET', undefined, token);
                 console.log(dataResponse)
@@ -46,22 +55,19 @@ export default function App({ Component, pageProps }: AppProps) {
 
     }, [validated, initialized]);
 
-    // return(
-    //     <HeroUIProvider><Component {...pageProps} /></HeroUIProvider>
-    // )
-      return(
-          <HeroUIProvider>
-              {initialized ? (
-                  <>
-                      { validated ? (
-                          <Component {...pageProps} />
-                      ): (
-                          <></>
-                      )}
-                  </>
-              ): (
-                  <LoadingView />
-              )}
-          </HeroUIProvider>
-      );
+    return(
+        <HeroUIProvider>
+            {initialized ? (
+                <>
+                    { validated ? (
+                        <Component {...pageProps} />
+                    ): (
+                        <></>
+                    )}
+                </>
+            ): (
+                <LoadingView />
+            )}
+        </HeroUIProvider>
+    );
 }
