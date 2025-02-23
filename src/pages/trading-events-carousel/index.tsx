@@ -7,6 +7,7 @@ import LiveTradingEventCard from "@/pages/trading-events-carousel/components/Liv
 import NetworkingAPI from "@/helpers/NetworkingAPI";
 import moment from "moment/moment";
 import {SearchIcon} from "@/pages/reporting/admin/components/ReportingAdminTable";
+import {CardBody} from "@heroui/card";
 
 export default function Calendar() {
 
@@ -115,15 +116,17 @@ export default function Calendar() {
         <Card radius={'none'}
             className={"relative bg-[#0F0F0F] w-screen h-screen flex flex-col items-center start-start px-[0px] overflow-hidden"}>
             <div className={'w-full px-6 pt-6'}>
-                <Card className={' dark w-full max-w-full flex flex-row gap-4 items-center justify-start px-4 overflow-y-scroll py-3'}>
-                    {DOW.map((day, index) => (
-                        <div>
-                            <h4 onClick={() => {
-                                dayOfWeekSelection(index)
-                            }}
-                                className={`${selectedIndex === index ? 'text-[#FF9900]' : 'text-white/25'} font-bold text-large cursor-pointer ${selectedIndex === index ? '' : ''}`}>{day}</h4>
-                        </div>
-                    ))}
+                <Card className={' dark w-full max-w-full flex flex-row gap-4 items-center justify-start'}>
+                    <CardBody className={' dark w-full max-w-full flex flex-row gap-4 items-center justify-start px-4 overflow-y-scroll py-3'}>
+                        {DOW.map((day, index) => (
+                            <div>
+                                <h4 onClick={() => {
+                                    dayOfWeekSelection(index)
+                                }}
+                                    className={`${selectedIndex === index ? 'text-[#FF9900]' : 'text-white/25'} font-bold text-large cursor-pointer ${selectedIndex === index ? '' : ''}`}>{day}</h4>
+                            </div>
+                        ))}
+                    </CardBody>
                 </Card>
             </div>
 

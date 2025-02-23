@@ -20,7 +20,7 @@ export default function LiveTradingEventCard({ index, event }: Props) {
     }
 
     return(
-        <Card className="py-4 dark w-[270px] min-w-[280px]">
+        <Card isPressable shadow="sm" className="py-4 dark w-[270px] min-w-[280px]">
             <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
                 <p className="text-tiny text-[#FF9900] uppercase font-bold">{event?.educator_name}</p>
                 <small className="text-default-500">{constructTime()}</small>
