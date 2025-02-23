@@ -1,5 +1,7 @@
 import {useEffect, useState} from "react";
 import CreateEventDialog from "@/pages/admin-calendar/components/CreateEventDialog";
+import {Card, Divider} from "@heroui/react";
+import {CardBody} from "@heroui/card";
 
 interface Props {
     events: any[],
@@ -46,24 +48,32 @@ export default function Calendar({ events, triggerModal, modalOpen, triggeredDat
             )
         } else {
             return (
-                <div
-                    className={'border w-full h-auto flex flex-col items-start justify-start bg-black rounded mb-2 shadow cursor-pointer mt-1'}>
-                    <div style={{fontFamily: 'Pixidot', fontWeight: 400}}
-                         className="px-3 pt-2 w-full text-white text-[13px]"
-                         onClick={() => {
-                             console.log(selectedDate)
-                             setSelectedDateOBJ(selectedDate)
-                             triggeredDate(selectedDate)
-                         }}
-                    >
-                        <strong>{filteredEvents.length}</strong> Events
-                    </div>
-                    <div className={'flex flex-row justify-start items-center pt-1 gap-3 mt-0 px-3 pb-2'}>
-                        <div className={'flex flex-col items-start justify-start gap-1'}>
-                            <div style={{fontWeight: 800}} className={'text-[#FF9900] text-[11px]'}>See more</div>
-                        </div>
-                    </div>
-                </div>
+                <Card radius={'md'} isPressable={true} shadow={'sm'} onPress={() => {
+                    console.log(selectedDate)
+                    setSelectedDateOBJ(selectedDate)
+                    triggeredDate(selectedDate)
+                }} className={'w-full h-full flex flex-col items-start justify-start'}>
+                    <CardBody
+                        className={'w-full h-auto flex flex-col items-start justify-start cursor-pointer'}>
+                        {/*<div style={{fontFamily: 'Pixidot', fontWeight: 400}}*/}
+                        {/*     className="w-full text-white text-[13px]"*/}
+                        {/*     onClick={() => {*/}
+                        {/*         console.log(selectedDate)*/}
+                        {/*         setSelectedDateOBJ(selectedDate)*/}
+                        {/*         triggeredDate(selectedDate)*/}
+                        {/*     }}*/}
+                        {/*>*/}
+                        {/*    <strong>{filteredEvents.length}</strong> Events*/}
+                        {/*</div>*/}
+                        {/*<div className={'flex flex-row justify-start items-center pt-1 gap-3 mt-0 px-3 pb-2'}>*/}
+                        {/*    <div className={'flex flex-col items-start justify-start gap-1'}>*/}
+                        {/*        <div style={{fontWeight: 800}} className={'text-[#FF9900] text-[11px]'}>See more</div>*/}
+                        {/*    </div>*/}
+                        {/*</div>*/}
+                        <p className="text-tiny text-white font-bold"><span style={{fontFamily: 'DarkForest', fontWeight: 400}} className={'text-[#FF9900] text-[11px]'}>{filteredEvents.length}</span> Live Events</p>
+                        <small className="text-default-500">Tap to expand</small>
+                    </CardBody>
+                </Card>
             )
             // return filteredEvents
             //     .filter((event) => new Date(event.date).getDate() === day)
@@ -157,11 +167,17 @@ export default function Calendar({ events, triggerModal, modalOpen, triggeredDat
                         </div>
                         <div onClick={handleNextMonth} className={'w-[20px] h-[30px] bg-black'}></div>
                     </div>
+                    <div>
+                        <div className="grid grid-cols-7 gap-2 p-4">
+                            {daysOfWeek.map((day) => (
+                                <div style={{fontFamily: 'DarkForest', fontWeight: 400}} key={day}
+                                     className={`text-center font-semibold text-white text-[15px]`}>{day}</div>
+                            ))}
+                        </div>
+                        <Divider className={'dark'}/>
+                    </div>
                     <div className="grid grid-cols-7 gap-2 p-4">
-                        {daysOfWeek.map((day) => (
-                            <div style={{fontFamily: 'DarkForest', fontWeight: 400}} key={day}
-                                 className={`text-center font-semibold text-white text-[15px]`}>{day}</div>
-                        ))}
+
                         {generateCalendar(currentYear, currentMonth).map((day, index) => (
                             day ? (
                                 // <div
@@ -171,13 +187,14 @@ export default function Calendar({ events, triggerModal, modalOpen, triggeredDat
                                 // >
                                 //     {day}
                                 // </div>
-                                <div onClick={() => handleDayClick(day)} key={day}
-                                     className={`p-2 min-h-[100px] bg-[#282828] ${selectedDateOBJ?.toDateString() === new Date(currentYear, currentMonth, day).toDateString() ? 'border-[#FF9900] border-[1px]' : ''}`}>
-                                    <div style={{fontFamily: 'DarkForest', fontWeight: 400}}
-                                         className={`${new Date().toDateString() === new Date(currentYear, currentMonth, day).toDateString() ? 'text-[#FF9900]' : 'text-white'} text-[18px] font-bold  mb-0`}>{day}
-                                    </div>
-                                    {renderEventsForDay(day)}
-                                </div>
+                                <Card isPressable={true} shadow={'sm'} radius={'md'} className={'dark'} onPress={() => handleDayClick(day)} key={day}>
+                                    <CardBody className={`p-2 min-h-[100px] ${selectedDateOBJ?.toDateString() === new Date(currentYear, currentMonth, day).toDateString() ? '' : ''}`}>
+                                        <div style={{fontFamily: 'DarkForest', fontWeight: 400}}
+                                             className={`${new Date().toDateString() === new Date(currentYear, currentMonth, day).toDateString() ? 'text-[#FF9900]' : 'text-white'} text-[18px] font-bold  mb-0`}>{day}
+                                        </div>
+                                        {renderEventsForDay(day)}
+                                    </CardBody>
+                                </Card>
                             ) : (
                                 <div key={index}></div>
                             )
