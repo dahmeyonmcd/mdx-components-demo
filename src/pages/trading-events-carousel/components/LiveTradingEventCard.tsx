@@ -1,6 +1,7 @@
-import {Divider, Image} from "@heroui/react";
+import {Button, Card, CardFooter, CardHeader, Divider, Image} from "@heroui/react";
 import moment from "moment";
 import {User} from "@heroui/user";
+import {CardBody} from "@heroui/card";
 
 interface Props {
     index: number;
@@ -17,6 +18,25 @@ export default function LiveTradingEventCard({ index, event }: Props) {
         }
         return "UNKNOWN"
     }
+
+    return(
+        <Card className="py-4 dark w-[270px] min-w-[280px]">
+            <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
+                <p className="text-tiny text-[#FF9900] uppercase font-bold">{event?.educator_name}</p>
+                <small className="text-default-500">{constructTime()}</small>
+                <h4 className="font-bold text-large">{event?.title}</h4>
+            </CardHeader>
+            <CardBody className="overflow-visible py-2 gap-3">
+                <Image
+                    alt="Card background"
+                    className="object-cover rounded-xl"
+                    src={`https://mdxalgo.com/storage/${event?.educator_photo}`}
+                    width={270} height={240}
+                />
+                <Button  variant={'solid'} color={'warning'}>Join Live Stream</Button>
+            </CardBody>
+        </Card>
+    )
 
     return (
         <div key={index}

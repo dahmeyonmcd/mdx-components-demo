@@ -1,11 +1,12 @@
 import DemoLayout from "@/layouts/DemoLayout";
 import {Tab, Tabs} from "@heroui/tabs";
 import {Chip} from "@heroui/chip";
-import {Card, CardHeader, CardFooter, Image, Button, Divider} from "@heroui/react"
-import {useEffect, useState} from "react";
+import {Card, CardHeader, CardFooter, Image, Button, Divider, Input, ScrollShadow} from "@heroui/react"
+import {JSX, SVGProps, useEffect, useState} from "react";
 import LiveTradingEventCard from "@/pages/trading-events-carousel/components/LiveTradingEventCard";
 import NetworkingAPI from "@/helpers/NetworkingAPI";
 import moment from "moment/moment";
+import {SearchIcon} from "@/pages/reporting/admin/components/ReportingAdminTable";
 
 export default function Calendar() {
 
@@ -111,29 +112,70 @@ export default function Calendar() {
     },[])
 
     return (
-        <div
-            className={"relative bg-black w-screen h-screen flex flex-col items-center start-start px-[0px]"}>
-            <div className={'w-full max-w-full flex flex-row gap-8 items-center justify-start px-[0px] overflow-y-scroll'}>
-                {DOW.map((day, index) => (
-                    <div>
-                        <div style={{fontWeight: 900}} onClick={() => {
-                            dayOfWeekSelection(index)
-                        }}
-                             className={`${selectedIndex === index ? 'text-white' : 'text-[#878787]'} text-[22px] cursor-pointer ${selectedIndex === index ? '' : ''}`}>{day.toUpperCase()}</div>
-                    </div>
-                ))}
+        <Card radius={'none'}
+            className={"relative bg-[#0F0F0F] w-screen h-screen flex flex-col items-center start-start px-[0px] overflow-hidden"}>
+            <div className={'w-full px-6 pt-6'}>
+                <Card className={' dark w-full max-w-full flex flex-row gap-4 items-center justify-start px-4 overflow-y-scroll py-3'}>
+                    {DOW.map((day, index) => (
+                        <div>
+                            <h4 onClick={() => {
+                                dayOfWeekSelection(index)
+                            }}
+                                className={`${selectedIndex === index ? 'text-[#FF9900]' : 'text-white/25'} font-bold text-large cursor-pointer ${selectedIndex === index ? '' : ''}`}>{day}</h4>
+                        </div>
+                    ))}
+                </Card>
             </div>
 
-            <Divider className={'my-2 dark'}/>
-            <div className={'w-full flex flex-row gap-3 items-center justify-start mt-3 px-[0px]'}>
+
+
+            <div className={'w-full flex flex-row gap-3 items-center justify-between mt-3 px-6'}>
                 <div style={{ fontFamily: 'DarkForest', fontWeight: 400}} className={'text-white text-[15px]'}><span className={'text-[#FF9900]'}>{currentData?.length ?? '0'}</span> EVENTS THIS DAY</div>
+                <Input
+                    size={'md'}
+                    isClearable
+                    className="w-full sm:max-w-[24%] dark"
+                    placeholder="Search live events"
+                    startContent={<SearchIcon color={'#FF9900'} />}
+                />
             </div>
             <Divider className={'my-3 dark'}/>
-            <div className={'w-full max-w-full flex flex-row justify-start h-auto gap-3 mt-1 overflow-y-scroll scrollbar-hide px-[0px]'}>
+            <ScrollShadow  className="w-full max-w-full flex flex-row justify-start h-auto gap-3 mt-1 overflow-y-scroll scrollbar-hide px-4" orientation="horizontal">
                 {currentData.map((item, index) => (
                     <LiveTradingEventCard event={item} index={index}/>
                 ))}
-            </div>
-        </div>
+            </ScrollShadow>
+
+        </Card>
     )
 }
+
+export const SearchIcon = (props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) => {
+    return (
+        <svg
+            aria-hidden="true"
+            fill="none"
+            focusable="false"
+            height="1em"
+            role="presentation"
+            viewBox="0 0 24 24"
+            width="1em"
+            {...props}
+        >
+            <path
+                d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+            />
+            <path
+                d="M22 22L20 20"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+            />
+        </svg>
+    );
+};
