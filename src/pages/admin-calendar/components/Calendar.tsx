@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import CreateEventDialog from "@/pages/admin-calendar/components/CreateEventDialog";
-import {Card, Divider} from "@heroui/react";
+import {Card, CardHeader, Divider} from "@heroui/react";
 import {CardBody} from "@heroui/card";
 
 interface Props {
@@ -158,18 +158,19 @@ export default function Calendar({ events, triggerModal, modalOpen, triggeredDat
     return (
         <>
             <div className="w-[60%] h-screen">
-                <div className="bg-[#0F0F0F] shadow-lg overflow-hidden max-h-screen">
+                <Card className="bg-[#0F0F0F] shadow-lg overflow-hidden max-h-screen">
                     <div
-                        className={'w-full bg-[#FF9900] py-[6px] flex flex-row justify-between items-center px-[20px] flex-grow-0'}>
+                        className={'w-full bg-[#FF9900] py-1 flex flex-row justify-between items-center px-[20px] flex-grow-0'}>
                         <div onClick={handlePrevMonth} className={'w-[20px] h-[30px] bg-black'}></div>
-                        <div style={{fontFamily: 'Pixidot', fontWeight: 400}} className={'text-black text-[18px]'}>
-                            {`${monthNames[currentMonth]} ${currentYear}`}
-                        </div>
+                        <h4 className=" text-large text-black">{`${monthNames[currentMonth]} ${currentYear}`}</h4>
+                        {/*<div style={{fontFamily: 'Pixidot', fontWeight: 400}} className={'text-black text-[16px]'}>*/}
+                        {/*    <strong>{`${monthNames[currentMonth]} ${currentYear}`}</strong>*/}
+                        {/*</div>*/}
                         <div onClick={handleNextMonth} className={'w-[20px] h-[30px] bg-black'}></div>
                     </div>
                     <div>
                         <div className="grid grid-cols-7 gap-2 p-4">
-                            {daysOfWeek.map((day) => (
+                        {daysOfWeek.map((day) => (
                                 <div style={{fontFamily: 'DarkForest', fontWeight: 400}} key={day}
                                      className={`text-center font-semibold text-white text-[15px]`}>{day}</div>
                             ))}
@@ -217,7 +218,7 @@ export default function Calendar({ events, triggerModal, modalOpen, triggeredDat
                             </div>
                         </div>
                     )}
-                </div>
+                </Card>
             </div>
         </>
     )
