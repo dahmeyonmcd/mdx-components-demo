@@ -70,8 +70,8 @@ export default function Calendar({ events, triggerModal, modalOpen, triggeredDat
                         {/*        <div style={{fontWeight: 800}} className={'text-[#FF9900] text-[11px]'}>See more</div>*/}
                         {/*    </div>*/}
                         {/*</div>*/}
-                        <p className="text-tiny text-white font-bold"><span style={{fontFamily: 'DarkForest', fontWeight: 400}} className={'text-[#FF9900] text-[11px]'}>{filteredEvents.length}</span> Live Events</p>
-                        <small className="text-default-500">Tap to expand</small>
+                        <p className="text-tiny text-white font-bold"><span style={{fontFamily: 'DarkForest', fontWeight: 400}} className={'text-[#FF9900] text-[11px]'}>{filteredEvents.length}</span> Events</p>
+                        <small className="text-default-500">See more</small>
                     </CardBody>
                 </Card>
             )
