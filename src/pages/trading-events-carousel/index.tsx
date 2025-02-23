@@ -140,7 +140,7 @@ export default function Calendar() {
                 />
             </div>
             <Divider className={'mt-3 dark'}/>
-            <ScrollShadow  className="w-full max-w-full flex flex-row justify-start h-auto gap-3 py-3 overflow-y-scroll scrollbar-hide px-0 bg-[#0F0F0F]" orientation="horizontal">
+            <ScrollShadow  className="w-full max-w-full flex flex-row justify-start h-auto gap-3 py-3 overflow-y-scroll scrollbar-hide px-0 bg-black" orientation="horizontal">
                 {currentData.map((item, index) => (
                     <LiveTradingEventCard event={item} index={index}/>
                 ))}
