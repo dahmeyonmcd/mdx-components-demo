@@ -111,16 +111,16 @@ export default function Calendar() {
 
     return (
         <Card radius={'none'}
-            className={"relative bg-[#0F0F0F] w-screen h-screen flex flex-col items-center start-start px-[0px] overflow-hidden"}>
-            <div className={'w-full px-6 pt-6'}>
+            className={"relative bg-black w-screen h-screen flex flex-col items-center start-start px-[0px] overflow-hidden"}>
+            <div className={'w-full px-0 pt-0'}>
                 <Card className={' dark w-full max-w-full flex flex-row gap-4 items-center justify-start'}>
-                    <CardBody className={' dark w-full max-w-full flex flex-row gap-4 items-center justify-start px-4 overflow-y-scroll py-3'}>
+                    <CardBody className={' dark w-full max-w-full flex flex-row gap-6 items-center justify-start px-4 overflow-y-scroll py-3'}>
                         {DOW.map((day, index) => (
                             <div>
                                 <h4 onClick={() => {
                                     dayOfWeekSelection(index)
                                 }}
-                                    className={`${selectedIndex === index ? 'text-[#FF9900]' : 'text-white/25'} font-bold text-large cursor-pointer ${selectedIndex === index ? '' : ''}`}>{day}</h4>
+                                    className={`${selectedIndex === index ? 'text-[#FF9900] font-bold' : 'text-white/25'}  cursor-pointer ${selectedIndex === index ? '' : ''}`}>{day}</h4>
                             </div>
                         ))}
                     </CardBody>
@@ -129,7 +129,7 @@ export default function Calendar() {
 
 
 
-            <div className={'w-full flex flex-row gap-3 items-center justify-between mt-3 px-6'}>
+            <div className={'w-full flex flex-row gap-3 items-center justify-between mt-3 px-0'}>
                 <div style={{ fontFamily: 'DarkForest', fontWeight: 400}} className={'text-white text-[15px]'}><span className={'text-[#FF9900]'}>{currentData?.length ?? '0'}</span> EVENTS THIS DAY</div>
                 <Input
                     size={'md'}
@@ -139,8 +139,8 @@ export default function Calendar() {
                     startContent={<SearchIcon color={'#FF9900'} />}
                 />
             </div>
-            <Divider className={'my-3 dark'}/>
-            <ScrollShadow  className="w-full max-w-full flex flex-row justify-start h-auto gap-3 mt-1 overflow-y-scroll scrollbar-hide px-4" orientation="horizontal">
+            <Divider className={'mt-3 dark'}/>
+            <ScrollShadow  className="w-full max-w-full flex flex-row justify-start h-auto gap-3 py-3 overflow-y-scroll scrollbar-hide px-0 bg-[#0F0F0F]" orientation="horizontal">
                 {currentData.map((item, index) => (
                     <LiveTradingEventCard event={item} index={index}/>
                 ))}
