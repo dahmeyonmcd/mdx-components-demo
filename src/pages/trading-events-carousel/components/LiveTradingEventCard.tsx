@@ -22,7 +22,7 @@ export default function LiveTradingEventCard({ index, event }: Props) {
     function generateLink(event: any) {
         const streamId = event?.stream_id;
         if (streamId !== null && streamId !== "" && streamId !== undefined) {
-            if (typeof window?.parent === "undefined") return; // Ensure it's running on the client
+            if (typeof window === "undefined") return; // Ensure it's running on the client
 
             const searchParams = new URLSearchParams(window.parent?.location.search);
             searchParams.set("stream", streamId);
