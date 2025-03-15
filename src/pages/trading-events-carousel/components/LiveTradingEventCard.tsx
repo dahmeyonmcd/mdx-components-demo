@@ -28,7 +28,9 @@ export default function LiveTradingEventCard({ index, event }: Props) {
         const environment = searchParams?.get('environment') || 'dev'
         let pathname;
         if (environment === 'dev') {
-            pathname = 'https://mdx-algo-portal.test/'
+            pathname = 'https://staging.mdx-portal.com/'
+        } else if (environment === 'local') {
+            pathname = 'http://mdx-algo-portal.test'
         } else {
             pathname = 'https://mdxalgo.com/'
         }
