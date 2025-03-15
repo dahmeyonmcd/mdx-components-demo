@@ -10,17 +10,14 @@ import {useSearchParams} from "next/navigation";
 
 export default function App({ Component, pageProps }: AppProps) {
 
-    const searchParams = useSearchParams();
+    const _searchParams = useSearchParams();
 
     const [validated, setValidated] = useState(false);
     const [initialized, setInitialized] = useState(false);
 
     async function validate() {
-        const params = location.search
-
+        const { searchParams } = new URL(window.location.href);
         const token = searchParams?.get('token');
-        const stream = searchParams?.get('stream');
-        const environment = searchParams?.get('environment');
 
         // const parts = params.split("?token=")
         // let token;
