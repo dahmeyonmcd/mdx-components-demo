@@ -26,8 +26,10 @@ export default function LiveTradingEventCard({ index, event }: Props) {
 
             const searchParams = new URLSearchParams(window.location.search);
             searchParams.set("stream", streamId);
-            const newUrl = `${window.location.pathname}?${searchParams.toString()}`;
-            window.history.replaceState(null, "", newUrl);
+            // const newUrl = `${window.location.pathname}?${searchParams.toString()}`;
+            const newUrl = `${window.location.origin}${window.location.pathname}?${searchParams.toString()}`;
+            console.log(newUrl);
+            window.location.href = newUrl;
         }
     }
 
