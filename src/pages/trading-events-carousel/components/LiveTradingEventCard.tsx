@@ -28,8 +28,9 @@ export default function LiveTradingEventCard({ index, event }: Props) {
             searchParams.set("stream", streamId);
             // const newUrl = `${window.location.pathname}?${searchParams.toString()}`;
             const newUrl = `${window.location.origin}${window.location.pathname}?${searchParams.toString()}`;
+            window.parent.postMessage({ stream: streamId }, "*");
             console.log(newUrl);
-            window.location.href = newUrl;
+            window.parent.location.href = newUrl;
         }
     }
 
