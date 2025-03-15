@@ -30,7 +30,7 @@ export default function LiveTradingEventCard({ index, event }: Props) {
             const newUrl = `${window.parent?.location.origin}${window.location.pathname}?${searchParams.toString()}`;
             window.parent.postMessage({ stream: streamId }, "*");
             console.log(newUrl);
-            window.parent.location.href = newUrl;
+            // window.parent.location.href = newUrl;
 
             //tradingEventsCarouselIframe
         }
