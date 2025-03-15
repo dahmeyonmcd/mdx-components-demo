@@ -22,15 +22,17 @@ export default function LiveTradingEventCard({ index, event }: Props) {
     function generateLink(event: any) {
         const streamId = event?.stream_id;
         if (streamId !== null && streamId !== "" && streamId !== undefined) {
-            if (typeof window === "undefined") return; // Ensure it's running on the client
+            if (typeof window?.parent === "undefined") return; // Ensure it's running on the client
 
-            const searchParams = new URLSearchParams(window.location.search);
+            const searchParams = new URLSearchParams(window.parent?.location.search);
             searchParams.set("stream", streamId);
             // const newUrl = `${window.location.pathname}?${searchParams.toString()}`;
-            const newUrl = `${window.location.origin}${window.location.pathname}?${searchParams.toString()}`;
+            const newUrl = `${window.parent?.location.origin}${window.location.pathname}?${searchParams.toString()}`;
             window.parent.postMessage({ stream: streamId }, "*");
             console.log(newUrl);
             window.parent.location.href = newUrl;
+
+            //tradingEventsCarouselIframe
         }
     }
 
