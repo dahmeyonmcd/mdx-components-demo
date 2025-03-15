@@ -2,6 +2,8 @@ import {Button, Card, CardFooter, CardHeader, Divider, Image} from "@heroui/reac
 import moment from "moment";
 import {User} from "@heroui/user";
 import {CardBody} from "@heroui/card";
+import {useRouter} from "next/router";
+import {useSearchParams} from "next/navigation";
 
 interface Props {
     index: number;
@@ -9,6 +11,8 @@ interface Props {
 }
 
 export default function LiveTradingEventCard({ index, event }: Props) {
+
+    const searchParams = useSearchParams();
 
     function constructTime() {
         if (event) {
@@ -21,14 +25,21 @@ export default function LiveTradingEventCard({ index, event }: Props) {
 
     function generateLink(event: any) {
         const streamId = event?.stream_id;
+        const environment = searchParams?.get('environment') || 'dev'
+        let pathname;
+        if (environment === 'dev') {
+            pathname = 'https://mdx-algo-portal.test/'
+        } else {
+            pathname = 'https://mdxalgo.com/'
+        }
+
         if (streamId !== null && streamId !== "" && streamId !== undefined) {
+
             if (typeof window === "undefined") return; // Ensure it's running on the client
 
-            // const searchParams = new URLSearchParams(window.parent?.location.search);
-            // searchParams.set("stream", streamId);
             // const newUrl = `${window.location.pathname}?${searchParams.toString()}`;
-            const newUrl = `${window.parent?.location.origin}${window.location.pathname}?stream=${streamId}`;
-            window.parent?.postMessage({ stream: streamId }, "*");
+            const newUrl = `${pathname}academy?tab=3?stream=${streamId}`;
+            window.postMessage({ stream: streamId }, "*");
             console.log(newUrl);
             window.parent.location.href = newUrl;
 
