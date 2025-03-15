@@ -38,12 +38,9 @@ export default function LiveTradingEventCard({ index, event }: Props) {
             if (typeof window === "undefined") return; // Ensure it's running on the client
 
             // const newUrl = `${window.location.pathname}?${searchParams.toString()}`;
-            const newUrl = `${pathname}academy?tab=3?stream=${streamId}`;
-            window.postMessage({ stream: streamId }, "*");
-            console.log(newUrl);
+            const newUrl = `${pathname}academy?tab=3&stream=${streamId}`;
+            // window.postMessage({ stream: streamId }, "*");
             window.parent.location.href = newUrl;
-
-            //tradingEventsCarouselIframe
         }
     }
 
