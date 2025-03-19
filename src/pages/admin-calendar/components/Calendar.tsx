@@ -2,6 +2,8 @@ import {useEffect, useState} from "react";
 import CreateEventDialog from "@/pages/admin-calendar/components/CreateEventDialog";
 import {Card, CardHeader, Divider} from "@heroui/react";
 import {CardBody} from "@heroui/card";
+import Image from "next/image";
+import ImageConstants from "@/assets/images/ImageConstants";
 
 interface Props {
     events: any[],
@@ -161,16 +163,23 @@ export default function Calendar({ events, triggerModal, modalOpen, triggeredDat
                 <Card className="bg-[#0F0F0F] shadow-lg overflow-hidden max-h-screen">
                     <div
                         className={'w-full bg-[#FF9900] py-1 flex flex-row justify-between items-center px-[20px] flex-grow-0'}>
-                        <div onClick={handlePrevMonth} className={'w-[20px] h-[30px] bg-black'}></div>
+                        <div onClick={handlePrevMonth} className={'w-[20px] h-[20px] flex items-center justify-center'}>
+                            <Image src={ImageConstants.CALENDAR_BACK_ARROW} alt={'Back'}
+                                   className={'w-[15px] h-[15px]'}/>
+                        </div>
+                        {/*<div onClick={handlePrevMonth} className={'w-[20px] h-[30px] bg-black'}></div>*/}
                         <h4 className=" text-large text-black">{`${monthNames[currentMonth]} ${currentYear}`}</h4>
                         {/*<div style={{fontFamily: 'Pixidot', fontWeight: 400}} className={'text-black text-[16px]'}>*/}
                         {/*    <strong>{`${monthNames[currentMonth]} ${currentYear}`}</strong>*/}
                         {/*</div>*/}
-                        <div onClick={handleNextMonth} className={'w-[20px] h-[30px] bg-black'}></div>
+                        <div onClick={handleNextMonth} className={'w-[20px] h-[20px] flex items-center justify-center'}>
+                            <Image src={ImageConstants.CALENDAR_NEXT_ARROW} alt={'Back'}
+                                   className={'w-[15px] h-[15px]'}/>
+                        </div>
                     </div>
                     <div>
                         <div className="grid grid-cols-7 gap-2 p-4">
-                        {daysOfWeek.map((day) => (
+                            {daysOfWeek.map((day) => (
                                 <div style={{fontFamily: 'DarkForest', fontWeight: 400}} key={day}
                                      className={`text-center font-semibold text-white text-[15px]`}>{day}</div>
                             ))}
