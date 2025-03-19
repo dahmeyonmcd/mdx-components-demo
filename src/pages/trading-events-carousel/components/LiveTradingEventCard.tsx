@@ -46,6 +46,14 @@ export default function LiveTradingEventCard({ index, event }: Props) {
         }
     }
 
+    function getImageUrl(event: any) {
+        if (event?.educator_photo.includes('https://')) {
+            return event?.educator_photo
+        } else {
+             return `https://mdxalgo.com/storage/${event?.educator_photo}`
+        }
+    }
+
     return(
         <Card isPressable shadow="sm" className="py-4 dark w-[270px] min-w-[280px]">
             <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
@@ -57,7 +65,7 @@ export default function LiveTradingEventCard({ index, event }: Props) {
                 <Image
                     alt="Card background"
                     className="object-cover rounded-xl"
-                    src={`https://mdxalgo.com/storage/${event?.educator_photo}`}
+                    src={getImageUrl(event)}
                     width={270} height={240}
                 />
                 <Button onPress={() => generateLink(event)} variant={'solid'} color={'warning'}>Join Live Stream</Button>
