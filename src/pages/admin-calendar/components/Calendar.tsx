@@ -6,6 +6,7 @@ import Image from "next/image";
 import ImageConstants from "@/assets/images/ImageConstants";
 
 interface Props {
+    isAdmin: boolean;
     events: any[],
     triggerModal: (event?: any) => void,
     triggeredDate: (date: any) => void,
@@ -13,7 +14,7 @@ interface Props {
     onMonthChange: (month: number, year: number) => void,
 }
 
-export default function Calendar({ events, triggerModal, modalOpen, triggeredDate, onMonthChange }: Props) {
+export default function Calendar({ events, triggerModal, modalOpen, triggeredDate, onMonthChange, isAdmin = false }: Props) {
 
     const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
     const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
@@ -46,7 +47,10 @@ export default function Calendar({ events, triggerModal, modalOpen, triggeredDat
                     triggeredDate(selectedDate)
                 }} className={'w-full h-[90%] flex-col flex-shrink flex items-start justify-start'}>
                     <p className={'text-[#B5B5B5] text-[14px]'}><strong>No Events</strong></p>
-                    <p style={{fontFamily: 'Pixidot', fontWeight: 400}} className={'text-[#878787] text-[13px]'}>Tap to add new</p>
+                    {isAdmin && (
+                        <p style={{fontFamily: 'Pixidot', fontWeight: 400}} className={'text-[#878787] text-[13px]'}>Tap
+                            to add new</p>
+                    )}
                 </div>
             )
         } else {

@@ -87,7 +87,7 @@ export default function Page() {
             <div className="bg-black flex flex-row items-start justify-start h-screen gap-3">
                 {!isLoading && (
                     <>
-                        <Calendar onMonthChange={handleMonthChange} events={events} modalOpen={showModal} triggerModal={() => {}} triggeredDate={(date) => handleDateSelection(date)}/>
+                        <Calendar isAdmin={isAdmin} onMonthChange={handleMonthChange} events={events} modalOpen={showModal} triggerModal={() => {}} triggeredDate={(date) => handleDateSelection(date)}/>
                         <div
                             className={'w-[40%] h-screen max-h-screen overflow-y-scroll scrollbar-hide flex flex-col justify-start items-start px-2'}>
                             <div className={'w-full flex flex-row gap-3 items-center justify-start mt-3 px-[0px] pt-[0px]'}>
