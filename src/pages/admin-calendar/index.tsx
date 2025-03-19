@@ -18,6 +18,8 @@ const events = [
 
 export default function Page() {
 
+    const [isAdmin, setIsAdmin] = useState(false);
+
     const [events, setEvents] = useState<any[]>([]);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -85,15 +87,30 @@ export default function Page() {
                                     ))}
                                 </>
                             ) : (
-                                <div onClick={() => handleEventSelection()}
-                                     className="px-3 py-6 h-auto bg-[#0F0F0F] w-full">
-                                    <div
-                                        className={'w-full h-[90%] flex-col flex-shrink flex items-start justify-start'}>
-                                        <p className={'text-[#B5B5B5] text-[18px]'}><strong>No Events Scheduled For This Day</strong></p>
-                                        <p style={{fontFamily: 'Pixidot', fontWeight: 400}}
-                                           className={'text-[#878787] text-[15px]'}>Tap to add new</p>
-                                    </div>
-                                </div>
+                                <>
+                                    {isAdmin ? (
+                                        <div onClick={() => handleEventSelection()}
+                                             className="px-3 py-6 h-auto bg-[#0F0F0F] w-full">
+                                            <div
+                                                className={'w-full h-[90%] flex-col flex-shrink flex items-start justify-start'}>
+                                                <p className={'text-[#B5B5B5] text-[18px]'}><strong>No Events Scheduled For This Day</strong></p>
+                                                <p style={{fontFamily: 'Pixidot', fontWeight: 400}}
+                                                   className={'text-[#878787] text-[15px]'}>Tap to add new</p>
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        <div
+                                             className="px-3 py-6 h-auto bg-[#0F0F0F] w-full">
+                                            <div
+                                                className={'w-full h-[90%] flex-col flex-shrink flex items-start justify-start'}>
+                                                <p className={'text-[#B5B5B5] text-[18px]'}><strong>No Events Scheduled
+                                                    For This Day</strong></p>
+                                                {/*<p style={{fontFamily: 'Pixidot', fontWeight: 400}}*/}
+                                                {/*   className={'text-[#878787] text-[15px]'}>Tap to add new</p>*/}
+                                            </div>
+                                        </div>
+                                    )}
+                                </>
                             )}
                         </div>
                     </>

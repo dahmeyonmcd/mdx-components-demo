@@ -15,32 +15,33 @@ export default function Calendar() {
     const [isLoading, setIsLoading] = useState(false);
     const [initialized, setInitialized] = useState(false);
 
-    const DOW = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const DOW = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
     function handleIndexSelection(index: number) {
-        setSelectedIndex(index)
+        setSelectedIndex(index);
     }
 
     async function initializePage() {
         try {
-            const payload = { client_id: "mdx-portal", component: "carousel" }
+            const payload = { client_id: "mdx-portal", component: "carousel" };
             const tokenResponse = await NetworkingAPI.fetchDataFullResponse('auth/token/web-components/refresh', 'POST', payload, undefined);
             if (tokenResponse?.status === 201) {
-                const token = tokenResponse?.response?.result?.token
-                const carouselPayload = { month: new Date().getMonth(), year: new Date().getFullYear() }
+                const token = tokenResponse?.response?.result?.token;
+                const carouselPayload = { month: new Date().getMonth(), year: new Date().getFullYear() };
                 const dataResponse = await NetworkingAPI.fetchDataFullResponse('livestream/schedule/calendar', 'POST', carouselPayload, token);
-                const dataResult = dataResponse?.response?.result ?? []
-                const sorted = dataResult?.sort((a: any, b: any) => new Date(a?.date ?? "").getTime() - new Date(b?.date ?? "").getTime())
+                const dataResult = dataResponse?.response?.result ?? [];
+                const sorted = dataResult?.sort((a: any, b: any) => new Date(a?.date ?? "").getTime() - new Date(b?.date ?? "").getTime());
 
                 const today = new Date();
-                const daysOffset = new Date().getDay() === 0 ? 0 : new Date().getDay(); // How far back to Sunday
-                const sundayOfCurrentWeek = new Date(today);
-                sundayOfCurrentWeek.setDate(today.getDate() - daysOffset);
+                const currentDay = today.getDay();
+                const daysOffset = (currentDay === 0 ? 6 : currentDay - 1); // Adjust for Monday as the first day
+                const mondayOfCurrentWeek = new Date(today);
+                mondayOfCurrentWeek.setDate(today.getDate() - daysOffset);
 
-                // Generate an array of the current week (Sunday to Saturday)
+                // Generate an array of the current week (Monday to Sunday)
                 const weekDays = Array.from({ length: 7 }, (_, index) => {
-                    const day = new Date(sundayOfCurrentWeek);
-                    day.setDate(sundayOfCurrentWeek.getDate() + index); // Add 0-6 days to Sunday
+                    const day = new Date(mondayOfCurrentWeek);
+                    day.setDate(mondayOfCurrentWeek.getDate() + index); // Add 0-6 days to Monday
                     day.setHours(0, 0, 0, 0);
                     return day;
                 });
@@ -51,45 +52,46 @@ export default function Calendar() {
                     return weekDays.some((dow: Date) => dow.toDateString() === eventDate.toDateString());
                 });
 
-                setData(filteredData)
-                dayOfWeekSelection(new Date().getDay(), filteredData);
+                setData(filteredData);
+                dayOfWeekSelection(currentDay === 0 ? 6 : currentDay - 1, filteredData); // Adjust for Monday as the first day
 
-                setIsLoading(false)
-                setInitialized(true)
+                setIsLoading(false);
+                setInitialized(true);
 
             } else {
-                console.log('UNAUTHORIZED')
-                setIsLoading(false)
-                setInitialized(true)
+                console.log('UNAUTHORIZED');
+                setIsLoading(false);
+                setInitialized(true);
             }
         } catch (e) {
-           console.log(e)
-            setIsLoading(false)
-            setInitialized(true)
+            console.log(e);
+            setIsLoading(false);
+            setInitialized(true);
         }
     }
 
     function dayOfWeekSelection(dow: number, innerData?: any) {
-        handleIndexSelection(dow)
+        handleIndexSelection(dow);
         const today = new Date();
-        const daysOffset = today?.getDay() === 0 ? 0 : today?.getDay();
-        const sundayOfCurrentWeek = moment().toDate();
-        sundayOfCurrentWeek.setDate(today.getDate() - daysOffset);
+        const currentDay = today?.getDay();
+        const daysOffset = (currentDay === 0 ? 6 : currentDay - 1); // Adjust for Monday as the first day
+        const mondayOfCurrentWeek = moment().toDate();
+        mondayOfCurrentWeek.setDate(today.getDate() - daysOffset);
 
         const weekDays = Array.from({ length: 7 }, (_, index) => {
-            const day = new Date(sundayOfCurrentWeek);
-            day.setDate(sundayOfCurrentWeek.getDate() + index);
+            const day = new Date(mondayOfCurrentWeek);
+            day.setDate(mondayOfCurrentWeek.getDate() + index);
             return day;
         });
 
-        const daySelection = weekDays[dow]
+        const daySelection = weekDays[dow];
         daySelection.setHours(0, 0, 0, 0);
 
         let currentData;
         if (innerData) {
             currentData = innerData;
         } else {
-            currentData = data
+            currentData = data;
         }
 
         if (currentData?.length > 0) {
@@ -97,13 +99,14 @@ export default function Calendar() {
                 const eventDate = moment(event?.date).local().toDate();
                 eventDate.setHours(0, 0, 0, 0);
                 return eventDate.getTime() === daySelection.getTime();
-            })
+            });
 
-            setCurrentData(currentSelection)
+            setCurrentData(currentSelection);
         } else {
-            setCurrentData([])
+            setCurrentData([]);
         }
     }
+
 
     useEffect(() => {
         initializePage()
