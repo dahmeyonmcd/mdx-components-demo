@@ -44,6 +44,23 @@ export default function Page() {
         setFilteredEvents(parsedFilteredEvents);
     }
 
+    async function handleMonthChange(month: number, year: number) {
+        try {
+            const payload = {client_id: "mdx-portal", component: "carousel"}
+            const tokenResponse = await NetworkingAPI.fetchDataFullResponse('auth/token/web-components/refresh', 'POST', payload, undefined);
+            if (tokenResponse?.status === 201) {
+                const token = tokenResponse?.response?.result?.token
+                const carouselPayload = {month: month, year: year}
+                const dataResponse = await NetworkingAPI.fetchDataFullResponse('livestream/schedule/calendar', 'POST', carouselPayload, token);
+                const dataResult = dataResponse?.response?.result ?? []
+                const sorted = dataResult?.sort((a: any, b: any) => new Date(a?.date ?? "").getTime() - new Date(b?.date ?? "").getTime())
+                setEvents(sorted);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     async function initializePage() {
         try {
             const payload = {client_id: "mdx-portal", component: "carousel"}
@@ -70,7 +87,7 @@ export default function Page() {
             <div className="bg-black flex flex-row items-start justify-start h-screen gap-3">
                 {!isLoading && (
                     <>
-                        <Calendar events={events} modalOpen={showModal} triggerModal={() => {}} triggeredDate={(date) => handleDateSelection(date)}/>
+                        <Calendar onMonthChange={handleMonthChange} events={events} modalOpen={showModal} triggerModal={() => {}} triggeredDate={(date) => handleDateSelection(date)}/>
                         <div
                             className={'w-[40%] h-screen max-h-screen overflow-y-scroll scrollbar-hide flex flex-col justify-start items-start px-2'}>
                             <div className={'w-full flex flex-row gap-3 items-center justify-start mt-3 px-[0px] pt-[0px]'}>

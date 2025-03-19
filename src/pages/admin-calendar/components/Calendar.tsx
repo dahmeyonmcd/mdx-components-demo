@@ -10,9 +10,10 @@ interface Props {
     triggerModal: (event?: any) => void,
     triggeredDate: (date: any) => void,
     modalOpen: boolean,
+    onMonthChange: (month: number, year: number) => void,
 }
 
-export default function Calendar({ events, triggerModal, modalOpen, triggeredDate }: Props) {
+export default function Calendar({ events, triggerModal, modalOpen, triggeredDate, onMonthChange }: Props) {
 
     const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
     const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
@@ -125,8 +126,10 @@ export default function Calendar({ events, triggerModal, modalOpen, triggeredDat
         if (currentMonth === 0) {
             setCurrentMonth(11);
             setCurrentYear(currentYear - 1);
+            onMonthChange(11, currentYear - 1)
         } else {
             setCurrentMonth(currentMonth - 1);
+            onMonthChange(currentMonth - 1, currentYear)
         }
     };
 
@@ -134,8 +137,10 @@ export default function Calendar({ events, triggerModal, modalOpen, triggeredDat
         if (currentMonth === 11) {
             setCurrentMonth(0);
             setCurrentYear(currentYear + 1);
+            onMonthChange(0, currentYear + 1)
         } else {
             setCurrentMonth(currentMonth + 1);
+            onMonthChange(currentMonth + 1, currentYear)
         }
     };
 
@@ -163,7 +168,7 @@ export default function Calendar({ events, triggerModal, modalOpen, triggeredDat
                 <Card className="bg-[#0F0F0F] shadow-lg overflow-hidden max-h-screen">
                     <div
                         className={'w-full bg-[#FF9900] py-1 flex flex-row justify-between items-center px-[20px] flex-grow-0'}>
-                        <div onClick={handlePrevMonth} className={'w-[20px] h-[20px] flex items-center justify-center'}>
+                        <div onClick={handlePrevMonth} className={'w-[20px] h-[20px] flex items-center justify-center cursor-pointer'}>
                             <Image src={ImageConstants.CALENDAR_BACK_ARROW} alt={'Back'}
                                    className={'w-[15px] h-[15px]'}/>
                         </div>
@@ -172,7 +177,7 @@ export default function Calendar({ events, triggerModal, modalOpen, triggeredDat
                         {/*<div style={{fontFamily: 'Pixidot', fontWeight: 400}} className={'text-black text-[16px]'}>*/}
                         {/*    <strong>{`${monthNames[currentMonth]} ${currentYear}`}</strong>*/}
                         {/*</div>*/}
-                        <div onClick={handleNextMonth} className={'w-[20px] h-[20px] flex items-center justify-center'}>
+                        <div onClick={handleNextMonth} className={'w-[20px] h-[20px] flex items-center justify-center cursor-pointer'}>
                             <Image src={ImageConstants.CALENDAR_NEXT_ARROW} alt={'Back'}
                                    className={'w-[15px] h-[15px]'}/>
                         </div>
