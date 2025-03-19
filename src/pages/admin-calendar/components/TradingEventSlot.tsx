@@ -18,6 +18,14 @@ export default function TradingEventSlot({ index, handleSelection, event }: Prop
         return "UNKNOWN"
     }
 
+    function getImageUrl(event: any) {
+        if (event?.educator_photo.includes('https://')) {
+            return event?.educator_photo
+        } else {
+            return `https://mdxalgo.com/storage/${event?.educator_photo}`
+        }
+    }
+
     return (
         <div onClick={() => handleSelection(event)} key={index}
              className={'w-full bg-[#282828] flex flex-col items-start justify-start px-[5px] pt-[5px] pb-[5px] mb-2 cursor-pointer'}>
@@ -26,7 +34,7 @@ export default function TradingEventSlot({ index, handleSelection, event }: Prop
                 </div>
             </div>
             <div className={'flex flex-row w-full flex-shrink-0 gap-2'}>
-                <Image removeWrapper={true} radius={'none'} src={`https://mdxalgo.com/storage/${event?.educator_photo}`}
+                <Image removeWrapper={true} radius={'none'} src={getImageUrl(event)}
                        className={'w-[190px] h-[130px] bg-black mt-[5px] object-cover'}/>
                 <div className={'w-full flex flex-col items-start justify-start px-2 py-3 gap-2 mt-0 mb-0'}>
                     <div style={{fontFamily: 'DarkForest', fontWeight: 400}}
