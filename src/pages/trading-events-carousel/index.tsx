@@ -115,35 +115,44 @@ export default function Calendar() {
     return (
         <Card radius={'none'}
             className={"relative bg-black w-screen h-screen flex flex-col items-center start-start px-[0px] overflow-hidden"}>
-            <div className={'w-full px-0 pt-0'}>
-                <Card className={' dark w-full max-w-full flex flex-row gap-4 items-center justify-start'}>
-                    <CardBody className={' dark w-full max-w-full flex flex-row gap-6 items-center justify-start px-4 overflow-y-scroll py-3'}>
-                        {DOW.map((day, index) => (
-                            <div>
-                                <h4 onClick={() => {
-                                    dayOfWeekSelection(index)
-                                }}
-                                    className={`${selectedIndex === index ? 'text-[#FF9900] font-bold' : 'text-white/25'}  cursor-pointer ${selectedIndex === index ? '' : ''}`}>{day}</h4>
-                            </div>
-                        ))}
-                    </CardBody>
-                </Card>
+            <div className={'w-full'}>
+                <div className={'max-w-full px-0 pt-0 justify-start flex flex-row items-start'}>
+                    <Card className={'dark w-auto max-w-full flex flex-row gap-4 items-center justify-start'}>
+                        <CardBody
+                            className={'dark w-auto max-w-full bg-[#0F0F0F] flex flex-row gap-6 items-center justify-start px-4 overflow-y-scroll py-3'}>
+                            {DOW.map((day, index) => (
+                                <div className={'h-full w-auto'}>
+                                    <h4
+                                        style={{fontFamily: 'FKGrotesk-Medium'}}
+                                        onClick={() => {
+                                            dayOfWeekSelection(index)
+                                        }}
+                                        className={`${selectedIndex === index ? 'text-[#FF9900] font-bold' : 'text-white/25'}  cursor-pointer ${selectedIndex === index ? '' : ''}`}>{day}</h4>
+                                </div>
+                            ))}
+                        </CardBody>
+                    </Card>
+                </div>
             </div>
-
 
 
             <div className={'w-full flex flex-row gap-3 items-center justify-between mt-3 px-0'}>
-                <div style={{ fontFamily: 'DarkForest', fontWeight: 400}} className={'text-white text-[15px]'}><span className={'text-[#FF9900]'}>{currentData?.length ?? '0'}</span> EVENTS THIS DAY</div>
+                <h4 style={{fontFamily: 'FKGrotesk-Bold'}} className={'text-white text-[15px]'}><span
+                    className={'text-[#FF9900]'}>{currentData?.length ?? '0'}</span> EVENTS THIS DAY</h4>
                 <Input
                     size={'md'}
                     isClearable
-                    className="w-full sm:max-w-[24%] dark"
+                    classNames={{ inputWrapper: 'bg-[#0F0F0F]'}}
+                    className="w-full sm:max-w-[24%] dark bg-[#0F0F0F]"
                     placeholder="Search live events"
-                    startContent={<SearchIcon color={'#FF9900'} />}
+                    startContent={<SearchIcon color={'#FF9900'}/>}
+
                 />
             </div>
             <Divider className={'mt-3 dark'}/>
-            <ScrollShadow  className="w-full max-w-full flex flex-row justify-start h-auto gap-3 py-3 overflow-y-scroll scrollbar-hide px-0 bg-black" orientation="horizontal">
+            <ScrollShadow
+                className="w-full max-w-full flex flex-row justify-start h-auto gap-3 py-3 overflow-y-scroll scrollbar-hide px-0 bg-black"
+                orientation="horizontal">
                 {currentData.map((item, index) => (
                     <LiveTradingEventCard event={item} index={index}/>
                 ))}

@@ -29,6 +29,34 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'FKGrotesk-Light';
+  src: url('../assets/fonts/FKGrotesk/FKGroteskNeueTrial-Light.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'FKGrotesk-Regular';
+  src: url('../assets/fonts/FKGrotesk/FKGroteskNeueTrial-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'FKGrotesk-Medium';
+  src: url('../assets/fonts/FKGrotesk/FKGroteskNeueTrial-Medium.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'FKGrotesk-Bold';
+  src: url('../assets/fonts/FKGrotesk/FKGroteskNeueTrial-Bold.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);

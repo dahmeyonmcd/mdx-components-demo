@@ -55,20 +55,21 @@ export default function LiveTradingEventCard({ index, event }: Props) {
     }
 
     return(
-        <Card isPressable shadow="sm" className="py-4 dark w-[270px] min-w-[280px]">
-            <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-                <p className="text-tiny text-[#FF9900] uppercase font-bold">{event?.educator_name}</p>
-                <small className="text-default-500">{constructTime()}</small>
-                <h4 className="font-bold text-large">{event?.title}</h4>
+        <Card classNames={{ base: 'bg-[#0F0F0F]'}} onPress={() => generateLink(event)} isPressable shadow="sm" className="py-4 dark w-[270px] min-w-[280px] cursor-pointer">
+            <CardHeader className="pb-0 pt-1 px-4 flex-col items-start">
+                <p style={{ fontFamily: 'FKGrotesk-Medium'}} className="text-tiny text-[#FF9900] uppercase font-bold">{event?.educator_name}</p>
+                <small style={{ fontFamily: 'FKGrotesk-Regular'}} className="text-[#6F6C67]">{constructTime()}</small>
+                <h4 style={{ fontFamily: 'FKGrotesk-Medium'}} className="font-bold text-large text-white">{event?.title}</h4>
             </CardHeader>
-            <CardBody className="overflow-visible py-2 gap-3">
+            <CardBody className="overflow-visible pt-2 pb-0 gap-3">
                 <Image
                     alt="Card background"
                     className="object-cover rounded-xl"
                     src={getImageUrl(event)}
                     width={270} height={240}
                 />
-                <Button onPress={() => generateLink(event)} variant={'solid'} color={'warning'}>Join Live Stream</Button>
+                <p className={'w-full text-center text-[13px] text-[#6F6C67] mt-1'}>Click to join live stream</p>
+                {/*<Button onPress={() => generateLink(event)} variant={'solid'} color={'warning'}>Join Live Stream</Button>*/}
             </CardBody>
         </Card>
     )
