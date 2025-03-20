@@ -127,7 +127,7 @@ export default function Calendar() {
                                         onClick={() => {
                                             dayOfWeekSelection(index)
                                         }}
-                                        className={`${selectedIndex === index ? 'text-white ' : 'text-[#6F6C67]'}  cursor-pointer ${selectedIndex === index ? '' : ''} text-[17px] h-full`}>{day}</h4>
+                                        className={`${selectedIndex === index ? 'text-[#C2BFBB] ' : 'text-[#6F6C67]'}  cursor-pointer ${selectedIndex === index ? '' : ''} text-[16.5px] h-full`}>{day}</h4>
                                 </div>
                             ))}
                         </CardBody>
