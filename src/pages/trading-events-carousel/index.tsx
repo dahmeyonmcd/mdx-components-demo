@@ -119,15 +119,15 @@ export default function Calendar() {
                 <div className={'max-w-full px-0 pt-0 justify-start flex flex-row items-start'}>
                     <Card className={'dark w-auto max-w-full flex flex-row gap-4 items-center justify-start'}>
                         <CardBody
-                            className={'dark w-auto max-w-full bg-[#0F0F0F] flex flex-row gap-6 items-center justify-start px-4 overflow-y-scroll py-3'}>
+                            className={'dark h-full w-auto max-w-full bg-[#171615] flex flex-row gap-6 items-center justify-start px-4 overflow-y-scroll py-0'}>
                             {DOW.map((day, index) => (
-                                <div className={'h-full w-auto'}>
+                                <div className={`h-full w-auto ${selectedIndex === index ? 'border-b-[2px] border-b-[#FF9F0C]' : 'border-b-[0px]'} py-3`}>
                                     <h4
                                         style={{fontFamily: 'FKGrotesk-Medium'}}
                                         onClick={() => {
                                             dayOfWeekSelection(index)
                                         }}
-                                        className={`${selectedIndex === index ? 'text-[#FF9900] font-bold' : 'text-white/25'}  cursor-pointer ${selectedIndex === index ? '' : ''}`}>{day}</h4>
+                                        className={`${selectedIndex === index ? 'text-white ' : 'text-[#6F6C67]'}  cursor-pointer ${selectedIndex === index ? '' : ''} text-[17px] h-full`}>{day}</h4>
                                 </div>
                             ))}
                         </CardBody>
@@ -137,8 +137,8 @@ export default function Calendar() {
 
 
             <div className={'w-full flex flex-row gap-3 items-center justify-between mt-3 px-0'}>
-                <h4 style={{fontFamily: 'FKGrotesk-Bold'}} className={'text-white text-[15px]'}><span
-                    className={'text-[#FF9900]'}>{currentData?.length ?? '0'}</span> EVENTS THIS DAY</h4>
+                <p style={{ fontFamily: 'FKGrotesk-Bold'}} className={'text-white text-[15px]'}><span
+                    className={'text-[#FF9900]'}>{currentData?.length ?? '0'}</span> EVENTS THIS DAY</p>
                 <Input
                     size={'md'}
                     isClearable
@@ -149,7 +149,7 @@ export default function Calendar() {
 
                 />
             </div>
-            <Divider className={'mt-3 dark'}/>
+            <Divider className={'mt-3 dark bg-[#454340]'}/>
             <ScrollShadow
                 className="w-full max-w-full flex flex-row justify-start h-auto gap-3 py-3 overflow-y-scroll scrollbar-hide px-0 bg-black"
                 orientation="horizontal">
