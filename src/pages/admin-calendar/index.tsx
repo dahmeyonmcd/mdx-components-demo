@@ -30,10 +30,10 @@ export default function Page() {
     const [filteredEvents, setFilteredEvents] = useState<any[] | null>(null);
 
     function handleEventSelection(event?: any) {
-        if (event) {
-            setSelectedEvent(event);
-        }
-        setShowModal(true);
+        // if (event) {
+        //     setSelectedEvent(event);
+        // }
+        // setShowModal(true);
     }
 
     function handleDateSelection(date: Date) {
